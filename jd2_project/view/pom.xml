@@ -19,6 +19,12 @@
             <version>5.0.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>by.academy.it</groupId>
+            <artifactId>controller</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -28,7 +34,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.1</version>
                 <configuration>
-                    <warName>web-project</warName>
+                    <warName>view</warName>
                 </configuration>
             </plugin>
             <plugin>
@@ -46,7 +52,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <warFile>target\web-project.war</warFile>
+                    <warFile>target\view.war</warFile>
                     <username>tomcat</username>
                     <password>tomcat</password>
                 </configuration>
