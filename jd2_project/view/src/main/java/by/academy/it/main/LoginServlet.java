@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class RegistrationServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
     private UserController userController;
 
     @Override
@@ -29,8 +29,7 @@ public class RegistrationServlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        String repassword = req.getParameter("repassword");
-        if (userController.newUserRegistration(email, password, repassword)) {
+        if (userController.loginUser(email, password)) {
             writer.write("COOL");
         } else {
             writer.write("NOT COOL");

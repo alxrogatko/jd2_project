@@ -7,6 +7,7 @@
     <welcome-file-list>
         <welcome-file>login/login.html</welcome-file>
     </welcome-file-list>
+
     <servlet>
         <servlet-name>registerServlet</servlet-name>
         <servlet-class>by.academy.it.main.RegistrationServlet</servlet-class>
@@ -14,5 +15,14 @@
     <servlet-mapping>
         <servlet-name>registerServlet</servlet-name>
         <url-pattern>/check-registration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-class>by.academy.it.main.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
 </web-app>
