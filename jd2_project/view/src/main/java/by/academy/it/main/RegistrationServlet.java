@@ -1,6 +1,7 @@
 package by.academy.it.main;
 
 import by.academy.it.UserController;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -20,18 +21,21 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doPost(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         PrintWriter writer = resp.getWriter();
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String repassword = req.getParameter("repassword");
+
         if (userController.newUserRegistration(email, password, repassword)) {
-            writer.write("COOL");
+            String path = "/registration/successful-register.html";
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher(path);
+            requestDispatcher.forward(req, resp);
         } else {
             writer.write("NOT COOL");
         }
