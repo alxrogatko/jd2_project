@@ -8,6 +8,7 @@ import by.academy.it.validators.LoginValidation;
 import by.academy.it.validators.RegisterValidation;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class UserController {
     private final UserEmailDao userEmailDao;
@@ -18,8 +19,9 @@ public class UserController {
         userPasswordDao = new UserPasswordDao();
     }
 
-    public boolean newUserRegistration(String email, String password, String repassword) {
-        if (RegisterValidation.checkCanUserRegister(email, password, repassword)) {
+    public List<String> newUserRegistration(String email, String password, String repassword) {
+        List<String> messages = RegisterValidation.checkCanUserRegister(email, password, repassword);
+        if (messages.isEmpty()) {
             UserEmail userEmail = new UserEmail();
             UserPassword userPassword = new UserPassword();
             userEmail.setEmail(email.trim());
@@ -28,9 +30,8 @@ public class UserController {
             userPassword.setPassword(password);
             userPassword.setDate(LocalDateTime.now());
             userPasswordDao.addUserData(userPassword);
-            return true;
         }
-        return false;
+        return messages;
     }
 
     public boolean loginUser(String email, String password) {

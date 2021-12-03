@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 public class RegistrationServlet extends HttpServlet {
     private UserController userController;
@@ -27,17 +28,21 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        PrintWriter writer = resp.getWriter();
+        String path;
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String repassword = req.getParameter("repassword");
+        RequestDispatcher requestDispatcher;
 
-        if (userController.newUserRegistration(email, password, repassword)) {
-            String path = "/registration/successful-register.html";
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher(path);
-            requestDispatcher.forward(req, resp);
+        List<String> messages = userController.newUserRegistration(email, password, repassword);
+        if (messages.isEmpty()) {
+            path = "/successful-register.html";
         } else {
-            writer.write("NOT COOL");
+            path = "/registration.jsp";
+            req.setAttribute("exception", messages.get(0));
+
         }
+        requestDispatcher = req.getRequestDispatcher(path);
+        requestDispatcher.forward(req, resp);
     }
 }
