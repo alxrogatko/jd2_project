@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +37,7 @@
 				<form class="login100-form validate-form" method = "post" action = "/view/home">
 					<span class="login100-form-title p-b-26">
 						Добро пожаловать
-						<p> <%= request.getAttribute("exception") %> </p>
+						<p> <c:out value= "${exception}" default = " "></c:out> </p>
 					</span>
 
 					<div class="wrap-input100 validate-input">
