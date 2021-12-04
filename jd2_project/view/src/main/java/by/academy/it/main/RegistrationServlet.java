@@ -33,8 +33,8 @@ public class RegistrationServlet extends HttpServlet {
         String password = req.getParameter("password");
         String repassword = req.getParameter("repassword");
         RequestDispatcher requestDispatcher;
-
         List<String> messages = userController.newUserRegistration(email, password, repassword);
+
         if (messages.isEmpty()) {
             path = "/successful-register.html";
         } else {

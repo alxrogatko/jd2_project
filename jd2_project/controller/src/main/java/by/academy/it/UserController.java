@@ -34,7 +34,7 @@ public class UserController {
         return messages;
     }
 
-    public boolean loginUser(String email, String password) {
+    public List<String> loginUser(String email, String password) {
         return LoginValidation.checkCanUserLogin(email, password);
     }
 }

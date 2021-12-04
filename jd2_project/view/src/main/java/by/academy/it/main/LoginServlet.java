@@ -1,6 +1,7 @@
 package by.academy.it.main;
 
 import by.academy.it.UserController;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 public class LoginServlet extends HttpServlet {
     private UserController userController;
@@ -20,19 +22,26 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doPost(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        String path = null;
         PrintWriter writer = resp.getWriter();
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        if (userController.loginUser(email, password)) {
+        RequestDispatcher requestDispatcher;
+        List<String> messages = userController.loginUser(email, password);
+
+        if (messages.isEmpty()) {
             writer.write("COOL");
         } else {
-            writer.write("NOT COOL");
+            path = "/login.jsp";
+            req.setAttribute("exception", messages.get(0));
         }
+        requestDispatcher = req.getRequestDispatcher(path);
+        requestDispatcher.forward(req, resp);
     }
 }

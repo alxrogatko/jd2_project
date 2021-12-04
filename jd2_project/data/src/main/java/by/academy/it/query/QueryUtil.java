@@ -16,7 +16,7 @@ public class QueryUtil {
         return emailQuery.list();
     }
 
-    public static List<UserPassword> getPassword(String id) {
+    public static List<UserPassword> getUserPassword(String id) {
         Query<UserPassword> passwordQuery = SessionFactoryUtil.getSession().openSession().createQuery(
                 "from UserPassword where userId =: paramId", UserPassword.class);
         passwordQuery.setParameter("paramId", id);

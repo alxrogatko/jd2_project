@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <%@ page contentType="text/html; charset=UTF-8" %>
 	<title>Добро пожаловать</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,6 +36,7 @@
 				<form class="login100-form validate-form" method = "post" action = "/view/home">
 					<span class="login100-form-title p-b-26">
 						Добро пожаловать
+						<p> <%= request.getAttribute("exception") %> </p>
 					</span>
 
 					<div class="wrap-input100 validate-input">
