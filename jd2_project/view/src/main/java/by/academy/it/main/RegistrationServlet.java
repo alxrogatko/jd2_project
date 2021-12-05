@@ -36,7 +36,7 @@ public class RegistrationServlet extends HttpServlet {
         List<String> messages = userController.newUserRegistration(email, password, repassword);
 
         if (messages.isEmpty()) {
-            path = "/successful-register.html";
+            path = "/successful-register.jsp";
         } else {
             path = "/registration.jsp";
             req.setAttribute("exception", messages.get(0));

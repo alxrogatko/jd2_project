@@ -5,38 +5,20 @@
     <%@ page contentType="text/html; charset=UTF-8" %>
 	<title>Регистрация пользователя</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="login-and-register-style/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="login-and-register-style/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="login-and-register-style/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="login-and-register-style/fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="login-and-register-style/vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="login-and-register-style/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="login-and-register-style/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="login-and-register-style/vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="login-and-register-style/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="login-and-register-style/css/util.css">
-	<link rel="stylesheet" type="text/css" href="login-and-register-style/css/main.css">
-<!--===============================================================================================-->
+	<jsp:include page="css.html"/>
 </head>
 <body>
-	
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('login-and-register-style/images/bg-01.jpg');">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method = "post" action = "/view/check-registration">
 					<span class="login100-form-title p-b-26">
-						Регистрация
-						<p> <c:out value= "${exception}" default = " "></c:out> </p>
+					    Регистрация
+						<p>
+						    <font color = "#FF0000">
+						        <c:out value= "${exception}" default = " "> </c:out>
+                            </font>
+                        </p>
 					</span>
 
 					<div class="wrap-input100 validate-input">
@@ -81,21 +63,6 @@
 		</div>
 	</div>
 	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
-	<script src="login-and-register-style/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="login-and-register-style/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="login-and-register-style/vendor/bootstrap/js/popper.js"></script>
-	<script src="login-and-register-style/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="login-and-register-style/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="login-and-register-style/vendor/daterangepicker/moment.min.js"></script>
-	<script src="login-and-register-style/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="login-and-register-style/js/main.js"></script>
-
+	<jsp:include page="js.html" />
 </body>
 </html>
