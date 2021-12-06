@@ -5,12 +5,12 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
-@Table(name = "user_email")
+@Table(name = "user_info")
 @Getter
-public class UserEmail {
+public class UserInfo {
 
     @Id
     @GeneratedValue(generator = "uuid-generator")
@@ -18,15 +18,23 @@ public class UserEmail {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "email")
+    @Column(name = "user_id")
     @Setter
-    private String email;
+    private String userId;
 
-    @Column(name = "change_date")
+    @Column(name = "nickname")
     @Setter
-    private LocalDateTime date;
+    private String nickname;
 
-    @Column(name = "first_authorisation")
+    @Column(name = "gender")
     @Setter
-    private boolean firstAuthorisation;
+    private String gender;
+
+    @Column(name = "age")
+    @Setter
+    private String age;
+
+    @Column(name = "birthday")
+    @Setter
+    private Date birthday;
 }

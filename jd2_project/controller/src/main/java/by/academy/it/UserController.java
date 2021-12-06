@@ -24,11 +24,13 @@ public class UserController {
         if (messages.isEmpty()) {
             UserEmail userEmail = new UserEmail();
             UserPassword userPassword = new UserPassword();
+            LocalDateTime date = LocalDateTime.now();
             userEmail.setEmail(email.trim());
+            userEmail.setDate(date);
             userEmailDao.addNewUser(userEmail);
             userPassword.setUserId(userEmail.getId());
             userPassword.setPassword(password);
-            userPassword.setDate(LocalDateTime.now());
+            userPassword.setDate(date);
             userPasswordDao.addUserData(userPassword);
         }
         return messages;

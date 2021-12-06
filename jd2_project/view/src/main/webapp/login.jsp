@@ -12,7 +12,7 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('login-and-register-style/images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" method = "post" action = "/view/home">
+				<form class="login100-form validate-form" method = "post" action = "/view/check-login">
 					<span class="login100-form-title p-b-26">
 						Добро пожаловать
 						<p>
@@ -22,12 +22,12 @@
                         </p>
 					</span>
 
-					<div class="wrap-input100 validate-input">
+					<div class="wrap-input100">
 						<input class="input100" type="text" name="email">
 						<span class="focus-input100" data-placeholder="Почта"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input">
+					<div class="wrap-input100">
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>

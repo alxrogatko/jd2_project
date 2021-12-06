@@ -28,15 +28,14 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        String path = null;
-        PrintWriter writer = resp.getWriter();
+        String path;
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         RequestDispatcher requestDispatcher;
         List<String> messages = userController.loginUser(email, password);
 
         if (messages.isEmpty()) {
-            writer.write("COOL");
+            path = "/input-info.jsp";
         } else {
             path = "/login.jsp";
             req.setAttribute("exception", messages.get(0));

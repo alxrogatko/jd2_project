@@ -23,6 +23,15 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/check-login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>homeServlet</servlet-name>
+        <servlet-class>by.academy.it.main.HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>homeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
 </web-app>

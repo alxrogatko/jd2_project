@@ -21,12 +21,12 @@
                         </p>
 					</span>
 
-					<div class="wrap-input100 validate-input">
+					<div class="wrap-input100">
 						<input class="input100" type="text" name="email">
 						<span class="focus-input100" data-placeholder="Почта"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input">
+					<div class="wrap-input100">
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
@@ -34,7 +34,7 @@
 						<span class="focus-input100" data-placeholder="Пароль"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input">
+					<div class="wrap-input100">
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
