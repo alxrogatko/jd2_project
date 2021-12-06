@@ -1,4 +1,4 @@
-package by.academy.it.data;
+package by.academy.it.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

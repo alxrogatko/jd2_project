@@ -1,6 +1,6 @@
 package by.academy.it.dao;
 
-import by.academy.it.data.SessionFactoryUtil;
+import by.academy.it.util.SessionFactoryUtil;
 import by.academy.it.pojo.UserEmail;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

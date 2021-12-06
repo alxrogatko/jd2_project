@@ -1,6 +1,5 @@
-package by.academy.it.query;
+package by.academy.it.util;
 
-import by.academy.it.data.SessionFactoryUtil;
 import by.academy.it.pojo.UserEmail;
 import by.academy.it.pojo.UserPassword;
 import org.hibernate.query.Query;

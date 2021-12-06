@@ -2,7 +2,7 @@ package by.academy.it.validators;
 
 import by.academy.it.pojo.UserEmail;
 import by.academy.it.pojo.UserPassword;
-import by.academy.it.query.QueryUtil;
+import by.academy.it.util.QueryUtil;
 
 import java.util.ArrayList;
 import java.util.List;
