@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 public class RegistrationServlet extends HttpServlet {
@@ -30,10 +29,14 @@ public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String path;
         String email = req.getParameter("email");
+        String nickname = req.getParameter("nickname");
         String password = req.getParameter("password");
         String repassword = req.getParameter("repassword");
+        String gender = req.getParameter("gender");
+        String age = req.getParameter("age");
+        String birthday = req.getParameter("birthday");
         RequestDispatcher requestDispatcher;
-        List<String> messages = userController.newUserRegistration(email, password, repassword);
+        List<String> messages = userController.newUserRegistration(email, password, repassword, nickname, gender, age, birthday);
 
         if (messages.isEmpty()) {
             path = "/successful-register.jsp";

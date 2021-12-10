@@ -12,5 +12,6 @@
         <property name="show_sql">true</property>
         <mapping class="by.academy.it.pojo.UserEmail"/>
         <mapping class="by.academy.it.pojo.UserPassword"/>
+        <mapping class="by.academy.it.pojo.User"/>
     </session-factory>
 </hibernate-configuration>

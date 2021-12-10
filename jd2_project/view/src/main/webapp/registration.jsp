@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('login-and-register-style/images/bg-01.jpg');">
+		<div class="container-login100" style="background-image: url('images/project.gif');">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method = "post" action = "/view/check-registration">
 					<span class="login100-form-title p-b-26">
@@ -27,6 +27,11 @@
 					</div>
 
 					<div class="wrap-input100">
+                        <input class="input100" type="text" maxlength = "10" name="nickname">
+                        <span class="focus-input100" data-placeholder="Имя аккаунта"></span>
+                    </div>
+
+					<div class="wrap-input100">
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
@@ -41,6 +46,20 @@
 						<input class="input100" type="password" name="repassword">
 						<span class="focus-input100" data-placeholder="Повторите пароль"></span>
 					</div>
+
+                    Пол: <input type="radio" name="gender" value="женский" checked />Женский
+                         <input type="radio" name="gender" value="мужской" />Мужской
+                         <input type="radio" name="gender" value="не указан" />Не указывать
+
+                    <div class="wrap-input100">
+                        <input class="input100" type="text" name="age">
+                        <span class="focus-input100" data-placeholder="Возраст"></span>
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <label for="date">Дата рождения: </label>
+                        <input type="date" id="date" name="birthday"/>
+                    </div>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">

@@ -1,6 +1,7 @@
 package by.academy.it.main;
 
 import by.academy.it.UserController;
+import by.academy.it.pojo.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -9,7 +10,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 public class LoginServlet extends HttpServlet {
@@ -35,7 +35,12 @@ public class LoginServlet extends HttpServlet {
         List<String> messages = userController.loginUser(email, password);
 
         if (messages.isEmpty()) {
-            path = "/input-info.jsp";
+            path = "/home.jsp";
+            List<User> user = userController.getUserByEmail(email);
+            req.setAttribute("nickname", user.get(0).getNickname());
+            req.setAttribute("gender", user.get(0).getGender());
+            req.setAttribute("age", user.get(0).getAge());
+            req.setAttribute("birthday", user.get(0).getBirthday());
         } else {
             path = "/login.jsp";
             req.setAttribute("exception", messages.get(0));

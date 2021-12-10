@@ -1,24 +1,16 @@
 package by.academy.it.util;
 
-import by.academy.it.pojo.UserEmail;
-import by.academy.it.pojo.UserPassword;
+import by.academy.it.pojo.User;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class QueryUtil {
 
-    public static List<UserEmail> getUserEmail(String email) {
-        Query<UserEmail> emailQuery = SessionFactoryUtil.getSession().openSession().createQuery(
-                "from UserEmail where email =: paramEmail", UserEmail.class);
-        emailQuery.setParameter("paramEmail", email.trim());
-        return emailQuery.list();
-    }
-
-    public static List<UserPassword> getUserPassword(String id) {
-        Query<UserPassword> passwordQuery = SessionFactoryUtil.getSession().openSession().createQuery(
-                "from UserPassword where userId =: paramId", UserPassword.class);
-        passwordQuery.setParameter("paramId", id);
-        return passwordQuery.list();
+    public static List<User> getUserByEmail(String email) {
+        Query<User> userQuery = SessionFactoryUtil.getSession().openSession().createQuery(
+                "from User where email =: paramEmail", User.class);
+        userQuery.setParameter("paramEmail", email.trim());
+        return userQuery.list();
     }
 }

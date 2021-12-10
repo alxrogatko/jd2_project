@@ -7,7 +7,7 @@ import java.util.List;
 
 public class RegisterValidation {
 
-    public static List<String> checkCanUserRegister(String email, String password, String repassword) {
+    public static List<String> checkCanUserRegister(String email, String password, String repassword, String nickname) {
         List<String> message = new ArrayList<>();
 
         if (!RegexValidation.checkEmailFormat(email)) {
@@ -15,8 +15,10 @@ public class RegisterValidation {
         } else if (!RegexValidation.checkPasswordFormat(password)) {
             message.add("Неверный формат пароля");
         } else {
-            if (!QueryUtil.getUserEmail(email).isEmpty()) {
+            if (!QueryUtil.getUserByEmail(email).isEmpty()) {
                 message.add("Пользователь с такой почтой уже существует");
+            } else if (nickname.isEmpty()) {
+                message.add("Введите имя аккаунта");
             } else if (!password.equals(repassword)) {
                 message.add("Пароли не совпадают");
             }
