@@ -208,7 +208,7 @@ a {
 
 .info-block:hover .info {
     visibility: visible;
-    transition: 0.5;
+    transition: 0.5s;
     transition-delay: 0.1s;
 }
 
@@ -236,7 +236,7 @@ a {
     top: 50%;
     width: 500px;
     height: 828px;
-    margin:-416px 0 0 -550px;
+    margin: -416px 0 0 -550px;
     border: solid black;
     border-width: 2px;
 }

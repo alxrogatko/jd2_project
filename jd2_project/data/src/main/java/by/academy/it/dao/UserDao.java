@@ -50,4 +50,9 @@ public class UserDao {
     public List<User> getUserByEmail(String email) {
         return QueryUtil.getUserByEmail(email);
     }
+
+    public User getUserById(String id) {
+        Session session = SessionFactoryUtil.getSession().openSession();
+        return session.get(User.class, id);
+    }
 }

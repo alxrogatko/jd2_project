@@ -1,4 +1,5 @@
-package by.academy.it.controller;
+package by.academy.it;
+
 
 import by.academy.it.dao.UserDao;
 import by.academy.it.dao.UserEmailDao;
@@ -20,8 +21,7 @@ public class UserController {
 
     public UserController(UserDao userDao,
                           UserEmailDao userEmailDao,
-                          UserPasswordDao userPasswordDao)
-    {
+                          UserPasswordDao userPasswordDao) {
         this.userDao = userDao;
         this.userEmailDao = userEmailDao;
         this.userPasswordDao = userPasswordDao;
@@ -58,6 +58,10 @@ public class UserController {
 
     public List<User> getUserByEmail(String email) {
         return userDao.getUserByEmail(email.trim());
+    }
+
+    public User getUserById(String id) {
+        return userDao.getUserById(id);
     }
 
     public List<User> getUserList() {

@@ -1,9 +1,8 @@
 package by.academy.it.controllers;
 
-import by.academy.it.controller.UserController;
+import by.academy.it.UserController;
 import by.academy.it.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class RegistrationController {

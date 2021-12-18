@@ -3,19 +3,33 @@
 <html>
 <head>
     <%@ page contentType="text/html; charset=UTF-8" %>
-    <meta charset="utf-8">
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/lightbox.css">
 </head>
 <body>
 <header>
-    <a href="/home.html">
+    <a href="/view/home.html">
         <div class="logo">Логотип</div>
     </a>
     <div class="search">Поиск</div>
 </header>
 
 <div class="wrapper">
+    <div class="avatar">
+    </div>
+    <div class="info-block">
+        <div class="nickname"><b><c:out value="${nickname}" default=" "> </c:out></b></div>
+        <div class="info">
+            <b>
+                Пол: <c:out value="${gender}" default="Не указано"> </c:out><br>
+                Возраст: <c:out value="${age}" default="Не указано"> </c:out><br>
+                Дата рождения: <c:out value="${birthday}" default="Не указано"> </c:out>
+            </b>
+        </div>
+    </div>
+
+    <div class="fast-block"></div>
 
     <div class="menu">
 
@@ -31,16 +45,16 @@
         <a href="/view/friends.html">
             <div class="menu-block">
                 <div class="icon">
-                    <img src="images/friends.png" alt="profile">
+                    <img src="images/friends.png" alt="friends">
                 </div>
                 <div class="menu-text">Друзья</div>
             </div>
         </a>
 
-        <a href="/view/messages.html">
+        <a href="/view/messages.jsp">
             <div class="menu-block">
                 <div class="icon">
-                    <img src="images/message.png" alt="profile">
+                    <img src="images/message.png" alt="messages">
                 </div>
                 <div class="menu-text">Сообщения</div>
             </div>
@@ -49,30 +63,15 @@
         <a href="/view/settings.html">
             <div class="menu-block">
                 <div class="icon">
-                    <img src="images/settings.png" alt="profile">
+                    <img src="images/settings.png" alt="settings">
                 </div>
                 <div class="menu-text">Настройки</div>
             </div>
         </a>
 
     </div>
-    <div class="fast-block"></div>
-
-    <div class="friend-box">
-
-        <div class="friend-choice-block"></div>
-        <c:forEach items="${user}" var="user">
-            <a href="/view/${user.getId()}">
-                <div class="search-friend-block">
-                    <div class="avatar-in-search"></div>
-                    <div class="nickname-in-search"><c:out value="${user.getNickname()}" default=""/></div>
-                </div>
-            </a>
-        </c:forEach>
-
-    </div>
+    <div class="news"></div>
 </div>
-
 <footer>
     <div class="logout">Выход</div>
 </footer>

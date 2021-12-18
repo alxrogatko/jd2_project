@@ -16,7 +16,8 @@ import java.time.LocalDateTime;
 @Scope("prototype")
 public class User {
 
-    public User(){}
+    public User() {
+    }
 
     public User(String email,
                 LocalDateTime lastEmailChangeDate,
@@ -26,8 +27,7 @@ public class User {
                 String gender,
                 String age,
                 String birthday,
-                LocalDateTime date)
-    {
+                LocalDateTime date) {
         this.email = email;
         this.lastEmailChangeDate = lastEmailChangeDate;
         this.password = password;
