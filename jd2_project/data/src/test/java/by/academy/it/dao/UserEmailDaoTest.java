@@ -27,12 +27,10 @@ public class UserEmailDaoTest extends TestSessionFactoryUtil {
 
     @Test
     void addNewUser() {
-        UserEmail userEmail = new UserEmail();
+
         LocalDateTime time = LocalDateTime.now();
         String email = "add-email-test@gmail.com";
-        userEmail.setId("1");
-        userEmail.setEmail(email);
-        userEmail.setDate(time);
+        UserEmail userEmail = new UserEmail("1", email, time);
 
         userEmailDao.addNewUser(userEmail);
 
@@ -41,7 +39,7 @@ public class UserEmailDaoTest extends TestSessionFactoryUtil {
         query.setParameter("paramEmail", email);
         List<UserEmail> listEmail = query.list();
 
-        Assertions.assertEquals("1", listEmail.get(0).getId());
+        Assertions.assertEquals("1", listEmail.get(0).getUserId());
         Assertions.assertEquals(email, listEmail.get(0).getEmail());
         Assertions.assertEquals(time, listEmail.get(0).getDate());
         session.close();

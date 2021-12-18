@@ -6,9 +6,12 @@ import by.academy.it.util.SessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class UserDao {
 
     private final SessionFactory sessionFactory;
@@ -37,6 +40,11 @@ public class UserDao {
         } finally {
             session.close();
         }
+    }
+
+    public List<User> getUsersList() {
+        Query<User> query = SessionFactoryUtil.getSession().openSession().createQuery("from User", User.class);
+        return query.list();
     }
 
     public List<User> getUserByEmail(String email) {

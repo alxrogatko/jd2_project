@@ -9,7 +9,7 @@
     </head>
     <body>
         <header>
-            <a href="profile.jsp">
+            <a href="/view/home.html">
                 <div class="logo">Логотип</div>
             </a>
             <div class="search">Поиск</div>
@@ -44,7 +44,7 @@
                     </div>
                 </a>
                 
-                <a href="friends.jsp">
+                <a href="/view/friends.html">
                     <div class="menu-block">
                         <div class="icon">
                             <img src="images/friends.png" alt="friends">

@@ -19,11 +19,17 @@ class RegisterValidationTest {
 
     @BeforeAll
     static void setUp() {
-        User user = new User();
+        User user = new User("test-register-validation@mail.ru",
+                null,
+                "6641782a",
+                null,
+                "",
+                "",
+                "",
+                "",
+                null);
         Session session = SessionFactoryUtil.getSession().openSession();
         Transaction transaction = session.beginTransaction();
-        user.setEmail("test-register-validation@mail.ru");
-        user.setPassword("6641782a");
         session.save(user);
         transaction.commit();
         session.close();

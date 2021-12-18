@@ -10,7 +10,7 @@ public class QueryUtil {
     public static List<User> getUserByEmail(String email) {
         Query<User> userQuery = SessionFactoryUtil.getSession().openSession().createQuery(
                 "from User where email =: paramEmail", User.class);
-        userQuery.setParameter("paramEmail", email.trim());
+        userQuery.setParameter("paramEmail", email);
         return userQuery.list();
     }
 }

@@ -5,7 +5,9 @@ import by.academy.it.util.SessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserEmailDao {
     private final SessionFactory sessionFactory;
 

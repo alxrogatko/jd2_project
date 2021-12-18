@@ -27,7 +27,6 @@ public class UserDaoTest extends TestSessionFactoryUtil {
 
     @Test
     public void addUser() {
-        User user = new User();
         String email = "add-test@gmail.com";
         String password = "123";
         String nickname = "nickname";
@@ -36,15 +35,7 @@ public class UserDaoTest extends TestSessionFactoryUtil {
         String birthday = "22.02.1999";
         LocalDateTime time = LocalDateTime.now();
 
-        user.setEmail(email);
-        user.setLastEmailChangeDate(time);
-        user.setPassword(password);
-        user.setLastPasswordChangeDate(time);
-        user.setNickname(nickname);
-        user.setGender(gender);
-        user.setAge(age);
-        user.setBirthday(birthday);
-        user.setDate(time);
+        User user = new User(email, time, password, time, nickname, gender, age, birthday, time);
 
         userDao.addUser(user);
 

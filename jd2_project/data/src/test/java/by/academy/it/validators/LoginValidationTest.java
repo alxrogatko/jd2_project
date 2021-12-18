@@ -20,7 +20,15 @@ class LoginValidationTest extends TestSessionFactoryUtil {
 
     @BeforeAll
     static void setUp() {
-        User user = new User();
+        User user = new User("test-login-validation@gmail.com",
+                null,
+                "6641782a",
+                null,
+                "",
+                "",
+                "",
+                "",
+                null);
         Session session = SessionFactoryUtil.getSession().openSession();
         Transaction transaction = session.beginTransaction();
         user.setEmail("test-login-validation@gmail.com");

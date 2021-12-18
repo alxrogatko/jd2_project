@@ -229,3 +229,58 @@ a {
     height: 828px;
     transition: 0.7s;
 }
+
+.friend-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 500px;
+    height: 828px;
+    margin:-416px 0 0 -550px;
+    border: solid black;
+    border-width: 2px;
+}
+
+.friend-choice-block {
+    width: 90%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+    border: solid black;
+    border-width: 2px;
+    border-radius: 22px 22px 22px 22px;
+}
+
+.search-friend-block {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    width: 50%;
+    height: 70px;
+    border: solid black;
+    border-width: 2px;
+    border-radius: 22px 22px 22px 22px;
+    transition: 0.5s;
+}
+
+.search-friend-block:hover {
+    background-color: lightgray;
+    transition: 0.5s;
+}
+
+.avatar-in-search {
+    float: left;
+    height: 66px;
+    width: 70px;
+    border: solid black;
+    border-width: 2px;
+    border-radius: 50%;
+}
+
+.nickname-in-search {
+    margin-top: 20px;
+    font-size: 25px;
+    text-align: center;
+    color: black;
+}

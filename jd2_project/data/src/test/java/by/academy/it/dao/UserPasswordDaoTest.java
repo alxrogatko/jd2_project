@@ -27,14 +27,10 @@ public class UserPasswordDaoTest extends TestSessionFactoryUtil {
 
     @Test
     void addUserData() {
-        UserPassword userPassword = new UserPassword();
+        LocalDateTime time = LocalDateTime.now();
         String id = "1";
         String password = "0000";
-        LocalDateTime time = LocalDateTime.now();
-
-        userPassword.setUserId(id);
-        userPassword.setPassword(password);
-        userPassword.setDate(time);
+        UserPassword userPassword = new UserPassword(id, password, time);
 
         userPasswordDao.addUserData(userPassword);
 

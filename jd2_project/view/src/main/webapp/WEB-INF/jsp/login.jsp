@@ -6,13 +6,16 @@
 	<title>Добро пожаловать</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<jsp:include page="css.html" />
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/project.gif');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" method = "post" action = "/view/home">
+				<form class="login100-form validate-form" method = "post" action = "/view/home.html">
 					<span class="login100-form-title p-b-26">
 						Добро пожаловать
 						<p>
@@ -49,7 +52,7 @@
 							Нет аккаунта?
 						</span>
 
-						<a class="txt2" href="./registration.jsp">
+						<a class="txt2" href="registration.html">
 							Зарегистрируйтесь!
 						</a>
 					</div>
@@ -58,6 +61,9 @@
 		</div>
 	</div>
 	<div id="dropDownSelect1"></div>
-	<jsp:include page="js.html" />
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@ public class SessionFactoryUtil {
     public static SessionFactory getSession() {
         if (sessionFactory == null) {
             StandardServiceRegistry reg = new StandardServiceRegistryBuilder()
-                    .configure("hibernate.user.test-cfg.xml")
+                    .configure("hibernate.user.cfg.xml")
                     .build();
             sessionFactory = new MetadataSources(reg)
                     .buildMetadata()

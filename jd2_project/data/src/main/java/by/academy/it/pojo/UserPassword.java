@@ -3,6 +3,8 @@ package by.academy.it.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,14 +12,17 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "user_password")
 @Getter
+@Component
+@Scope("prototype")
 public class UserPassword {
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(generator = "uuid-generator")
-    @GenericGenerator(name = "uuid-generator", strategy = "uuid")
-    private String id;
+    public UserPassword(String userId, String password, LocalDateTime date) {
+        this.userId = userId;
+        this.password = password;
+        this.date = date;
+    }
 
+    @Id
     @Column(name = "user_id")
     @Setter
     private String userId;
