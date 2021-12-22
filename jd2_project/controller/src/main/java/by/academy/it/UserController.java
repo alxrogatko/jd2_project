@@ -64,8 +64,8 @@ public class UserController {
         return userDao.getUserById(id);
     }
 
-    public List<User> getUserList() {
-        return userDao.getUsersList();
+    public List<User> getUserList(String id) {
+        return userDao.getUsersList(id);
     }
 
     public List<String> loginUser(String email, String password) {

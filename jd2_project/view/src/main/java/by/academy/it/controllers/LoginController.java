@@ -28,12 +28,9 @@ public class LoginController {
     ) {
         List<String> messages = userController.loginUser(email, password);
         if (messages.isEmpty()) {
-            List<User> user = userController.getUserByEmail(email);
-            model.addAttribute("nickname", user.get(0).getNickname());
-            model.addAttribute("gender", user.get(0).getGender());
-            model.addAttribute("age", user.get(0).getAge());
-            model.addAttribute("birthday", user.get(0).getBirthday());
-            return "home";
+            User user = userController.getUserByEmail(email).get(0);
+            model.addAttribute("user", user);
+            return "redirect:" + user.getId() + "/profile.html";
         } else {
             model.addAttribute("exception", messages.get(0));
             return "login";

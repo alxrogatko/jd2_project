@@ -42,8 +42,10 @@ public class UserDao {
         }
     }
 
-    public List<User> getUsersList() {
-        Query<User> query = SessionFactoryUtil.getSession().openSession().createQuery("from User", User.class);
+    public List<User> getUsersList(String id) {
+        Query<User> query = sessionFactory.openSession().createQuery("from User where id !=: paramId", User.class);
+        query.setParameter("paramId", id);
+
         return query.list();
     }
 
@@ -52,7 +54,9 @@ public class UserDao {
     }
 
     public User getUserById(String id) {
-        Session session = SessionFactoryUtil.getSession().openSession();
-        return session.get(User.class, id);
+        Session session = sessionFactory.openSession();
+        User user = session.get(User.class, id);
+        session.close();
+        return user;
     }
 }

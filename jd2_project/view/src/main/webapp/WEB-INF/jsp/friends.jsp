@@ -62,7 +62,7 @@
 
         <div class="friend-choice-block"></div>
         <c:forEach items="${user}" var="user">
-            <a href="/view/${user.getId()}">
+            <a href="/view/${user.getId()}/profile.html">
                 <div class="search-friend-block">
                     <div class="avatar-in-search"></div>
                     <div class="nickname-in-search"><c:out value="${user.getNickname()}" default=""/></div>

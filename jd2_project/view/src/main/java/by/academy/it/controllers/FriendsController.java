@@ -21,19 +21,17 @@ public class FriendsController {
     }
 
     @GetMapping("/friends.html")
-    public String getFriendsList(Model model) {
-        List<User> userList = userController.getUserList();
+    public String getUsersList(Model model) {
+        String id = String.valueOf(model.getAttribute("user.getId()"));
+        List<User> userList = userController.getUserList(id);
         model.addAttribute("user", userList);
         return "friends";
     }
 
-    @GetMapping("/{id}")
-    public String showFriendProfile(@PathVariable("id") String id, Model model) {
+    @GetMapping("/{id}/profile.html")
+    public String showUserProfile(@PathVariable("id") String id, Model model) {
         User user = userController.getUserById(id);
-        model.addAttribute("nickname", user.getNickname());
-        model.addAttribute("gender", user.getGender());
-        model.addAttribute("age", user.getAge());
-        model.addAttribute("birthday", user.getBirthday());
+        model.addAttribute("user", user);
         return "profile";
     }
 }
