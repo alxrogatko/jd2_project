@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-    <a href="/view/home.html">
+    <a href="/view/${userId}/profile.html">
         <div class="logo">Логотип</div>
     </a>
     <div class="search">Поиск</div>
@@ -20,7 +20,7 @@
     </div>
     <div class="info-block">
 
-        <c:set var = "user" value="${user}"/>
+        <c:set var="user" value="${user}"/>
 
 
         <div class="nickname">
@@ -34,12 +34,27 @@
             </b>
         </div>
     </div>
+    <script>
+
+    </script>
+
+    <c:if test="${user.getId() != sessionScope.userId}">
+        <a href="/view/${user.getId()}/profile.html">
+            <form method="get">
+                <button class="add-user" type="submit" name="button" value="added">
+                    <div class="add-user-icon">
+                        <img src="../images/plus.png" alt="add-user"/>
+                    </div>
+                </button>
+            </form>
+        </a>
+    </c:if>
 
     <div class="fast-block"></div>
 
     <div class="menu">
 
-        <a href="/view/profile.html">
+        <a href="/view/${userId}/profile.html">
             <div class="menu-block">
                 <div class="icon">
                     <img src="../images/user.png" alt="profile">

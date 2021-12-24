@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-    <a href="/home.html">
+    <a href="/view/${userId}/profile.html">
         <div class="logo">Логотип</div>
     </a>
     <div class="search">Поиск</div>
@@ -19,7 +19,7 @@
 
     <div class="menu">
 
-        <a href="/view/home.html">
+        <a href="/view/${userId}/profile.html">
             <div class="menu-block">
                 <div class="icon">
                     <img src="images/user.png" alt="profile">
@@ -78,7 +78,7 @@
         <a href="/view/profile.html">
             <div class="search-friend-block">
                 <div class="avatar-in-search"></div>
-                <div class="nickname-in-search">Tokamo</div>
+                <div class="nickname-in-search">Test</div>
             </div>
         </a>
     </div>
