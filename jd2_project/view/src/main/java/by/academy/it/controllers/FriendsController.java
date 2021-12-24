@@ -7,10 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.List;
 
 @Controller
+@SessionAttributes("userId")
 public class FriendsController {
 
     private final UserController userController;
@@ -20,11 +22,16 @@ public class FriendsController {
         this.userController = userController;
     }
 
-    @GetMapping("/friends.html")
+    @GetMapping("/users.html")
     public String getUsersList(Model model) {
-        String id = String.valueOf(model.getAttribute("user.getId()"));
+        String id = String.valueOf(model.getAttribute("userId"));
         List<User> userList = userController.getUserList(id);
         model.addAttribute("user", userList);
+        return "users";
+    }
+
+    @GetMapping("/friends.html")
+    public String getFriendsList(Model model) {
         return "friends";
     }
 

@@ -1,23 +1,23 @@
 package by.academy.it.pojo;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user")
 @Getter
+@NoArgsConstructor
 @Component
 @Scope("prototype")
-public class User {
-
-    public User() {
-    }
+public class User implements Serializable {
 
     public User(String email,
                 LocalDateTime lastEmailChangeDate,

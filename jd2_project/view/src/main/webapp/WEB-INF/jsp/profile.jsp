@@ -16,12 +16,12 @@
 </header>
 
 <div class="wrapper">
-    <div class="avatar">
+    <div class="avatar-block">
     </div>
     <div class="info-block">
 
         <c:set var = "user" value="${user}"/>
-        <c:set var ="userId" value="${user.getId()}"/>
+
 
         <div class="nickname">
             <b><c:out value="${user.getNickname()}"/></b>

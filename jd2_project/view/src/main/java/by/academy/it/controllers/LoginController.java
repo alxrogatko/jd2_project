@@ -8,10 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.List;
 
 @Controller
+@SessionAttributes("userId")
 public class LoginController {
 
     private final UserController userController;
@@ -30,6 +32,7 @@ public class LoginController {
         if (messages.isEmpty()) {
             User user = userController.getUserByEmail(email).get(0);
             model.addAttribute("user", user);
+            model.addAttribute("userId", user.getId());
             return "redirect:" + user.getId() + "/profile.html";
         } else {
             model.addAttribute("exception", messages.get(0));

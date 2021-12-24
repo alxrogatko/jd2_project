@@ -1,23 +1,24 @@
 package by.academy.it.pojo;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user_email")
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 @Component
 @Scope("prototype")
-public class UserEmail {
+public class UserEmail implements Serializable {
 
     public UserEmail(String userId, String email, LocalDateTime date) {
         this.userId = userId;
@@ -26,6 +27,11 @@ public class UserEmail {
     }
 
     @Id
+    @GeneratedValue(generator = "uuid-generator")
+    @GenericGenerator(name = "uuid-generator", strategy = "uuid")
+    @Column(name = "id")
+    private String id;
+
     @Column(name = "user_id")
     private String userId;
 

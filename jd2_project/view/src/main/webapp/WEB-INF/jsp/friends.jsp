@@ -59,17 +59,28 @@
     <div class="fast-block"></div>
 
     <div class="friend-box">
-
-        <div class="friend-choice-block"></div>
-        <c:forEach items="${user}" var="user">
-            <a href="/view/${user.getId()}/profile.html">
-                <div class="search-friend-block">
-                    <div class="avatar-in-search"></div>
-                    <div class="nickname-in-search"><c:out value="${user.getNickname()}" default=""/></div>
+        <div class="friend-choice-block">
+            <a href="/view/friends.html">
+                <div class="inner-friend-choice-block">
+                    <div class="inner-friend-choice-block-text">
+                        <b>Друзья</b>
+                    </div>
                 </div>
             </a>
-        </c:forEach>
-
+            <a href="/view/users.html">
+                <div class="inner-friend-choice-block">
+                    <div class="inner-friend-choice-block-text">
+                        <b>Все пользователи</b>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <a href="/view/profile.html">
+            <div class="search-friend-block">
+                <div class="avatar-in-search"></div>
+                <div class="nickname-in-search">Tokamo</div>
+            </div>
+        </a>
     </div>
 </div>
 
