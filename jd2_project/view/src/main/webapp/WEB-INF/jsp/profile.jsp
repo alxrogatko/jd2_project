@@ -41,7 +41,7 @@
     <c:if test="${user.getId() != sessionScope.userId}">
         <a href="/view/${user.getId()}/profile.html">
             <form method="get">
-                <button class="add-user" type="submit" name="button" value="added">
+                <button class="add-user" type="submit" name="button" value="request">
                     <div class="add-user-icon">
                         <img src="../images/plus.png" alt="add-user"/>
                     </div>

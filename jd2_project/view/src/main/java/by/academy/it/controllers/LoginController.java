@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.util.List;
 
 @Controller
-@SessionAttributes("userId")
+@SessionAttributes({"userId", "userNickname"})
 public class LoginController {
 
     private final UserController userController;
@@ -33,6 +33,7 @@ public class LoginController {
             User user = userController.getUserByEmail(email).get(0);
             model.addAttribute("user", user);
             model.addAttribute("userId", user.getId());
+            model.addAttribute("userNickname", user.getNickname());
             return "redirect:" + user.getId() + "/profile.html";
         } else {
             model.addAttribute("exception", messages.get(0));

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
-@SessionAttributes("userId")
+@SessionAttributes({"userId", "userNickname"})
 public class RegistrationController {
 
     private final UserController userController;

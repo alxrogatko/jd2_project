@@ -1,11 +1,14 @@
 package by.academy.it.dao;
 
 import by.academy.it.pojo.Friends;
+import by.academy.it.util.QueryUtil;
 import by.academy.it.util.SessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class FriendsDao {
@@ -54,5 +57,18 @@ public class FriendsDao {
         } finally {
             session.close();
         }
+    }
+
+    public void updateFriendStatus(String ownerId, String friendId, String status) {
+        QueryUtil.updateFriendStatus(ownerId, friendId, status);
+    }
+
+    public String getFriendRequestStatus(String id) {
+        Session session = sessionFactory.openSession();
+        return session.get(Friends.class, id).getStatus();
+    }
+
+    public List<Friends> getFriendRequests(String id) {
+        return QueryUtil.getFriendRequestsForUser(id);
     }
 }

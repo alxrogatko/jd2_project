@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
-@SessionAttributes("userId")
+@SessionAttributes({"userId", "userNickname"})
 public class UsersController {
 
     private final UserController userController;
@@ -38,24 +38,44 @@ public class UsersController {
 
     @GetMapping("/friends.html")
     public String getFriendsList(Model model) {
+        model.addAttribute("thisIsMyFriends", true);
+        return "friends";
+    }
+
+
+    @GetMapping("/friends-requests.html")
+    public String getFriendsRequestList(Model model, HttpServletRequest request) {
+        model.addAttribute("thisIsMyFriends", false);
+        String id = String.valueOf(model.getAttribute("userId"));
+        model.addAttribute("friends", friendsController.getFriendRequests(id));
         return "friends";
     }
 
     @GetMapping("/{id}/profile.html")
     public String showUserProfile(@PathVariable("id") String id, Model model, HttpServletRequest request) {
         User user = userController.getUserById(id);
-        String mainUserId = String.valueOf(model.getAttribute("userId"));
+        String ownerId = String.valueOf(model.getAttribute("userId"));
+        String userNickname = String.valueOf(model.getAttribute("userNickname"));
 
-        if (!id.equals(mainUserId)) {
+        if (!checkIfThisMainUserPage(id, ownerId)) {
             String friendRequestStatus = request.getParameter("button");
             if (friendRequestStatus != null) {
-                if (friendRequestStatus.equals("added")) {
-                    Friends friends = new Friends(mainUserId, user.getId(), LocalDateTime.now(), "added");
-                    friendsController.addFriend(friends);
+                if (friendRequestStatus.equals("request")) {
+                    addFriendAndTableAndSetStatus(user.getNickname(), userNickname, ownerId, user.getId(), friendRequestStatus);
                 }
             }
         }
         model.addAttribute("user", user);
         return "profile";
+    }
+
+    private boolean checkIfThisMainUserPage(String id, String userId) {
+        return id.equals(userId);
+    }
+
+    private void addFriendAndTableAndSetStatus(String friendName, String ownerName, String ownerId, String friendId, String status) {
+        LocalDateTime time = LocalDateTime.now();
+        Friends friends = new Friends(ownerId, ownerName, friendId, friendName, time, status);
+        friendsController.addFriend(friends);
     }
 }
