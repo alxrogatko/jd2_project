@@ -38,7 +38,10 @@ public class UsersController {
 
     @GetMapping("/friends.html")
     public String getFriendsList(Model model) {
+        String mainId = String.valueOf(model.getAttribute("userId"));
         model.addAttribute("thisIsMyFriends", true);
+        List<Friends> friendsList = friendsController.showFriendsList(mainId);
+        model.addAttribute("friends", friendsList);
         return "friends";
     }
 
@@ -46,8 +49,27 @@ public class UsersController {
     @GetMapping("/friends-requests.html")
     public String getFriendsRequestList(Model model, HttpServletRequest request) {
         model.addAttribute("thisIsMyFriends", false);
-        String id = String.valueOf(model.getAttribute("userId"));
-        model.addAttribute("friends", friendsController.getFriendRequests(id));
+        String receiverId = String.valueOf(model.getAttribute("userId"));
+
+        String requesterId = request.getParameter("button");
+        model.addAttribute("friends", friendsController.getFriendRequests(receiverId));
+
+
+        if (requesterId != null) {
+            if (!requesterId.equals("decline")) {
+                User requesterUser = userController.getUserById(requesterId);
+                String userNickname = String.valueOf(model.getAttribute("userNickname"));
+                LocalDateTime addDate = LocalDateTime.now();
+
+                addFriendAndTableAndSetStatus(addDate, requesterUser.getNickname(), userNickname, receiverId, requesterId, "added");
+                friendsController.updateFriendStatus(addDate, requesterId, receiverId, "added");
+            } else {
+                friendsController.deleteFriendRequest(receiverId, requesterId);
+            }
+        }
+
+        model.addAttribute("friends", friendsController.getFriendRequests(receiverId));
+
         return "friends";
     }
 
@@ -63,7 +85,7 @@ public class UsersController {
             String databaseRequestStatus = friendsController.getRequestStatus(id, requesterId);
 
             if (buttonRequestButtonStatus != null && buttonRequestButtonStatus.equals("request") && databaseRequestStatus.equals("none")) {
-                addFriendAndTableAndSetStatus(user.getNickname(), requesterNickname, requesterId, user.getId(), buttonRequestButtonStatus);
+                addFriendAndTableAndSetStatus(LocalDateTime.now(), user.getNickname(), requesterNickname, requesterId, user.getId(), buttonRequestButtonStatus);
             }
 
             databaseRequestStatus = friendsController.getRequestStatus(id, requesterId);
@@ -88,9 +110,8 @@ public class UsersController {
         return id.equals(userId);
     }
 
-    private void addFriendAndTableAndSetStatus(String receiverNickname, String requesterNickname, String requesterId, String receiverId, String status) {
-        LocalDateTime time = LocalDateTime.now();
-        Friends friends = new Friends(requesterId, requesterNickname, receiverId, receiverNickname, time, status);
+    private void addFriendAndTableAndSetStatus(LocalDateTime addDate, String receiverNickname, String requesterNickname, String requesterId, String receiverId, String status) {
+        Friends friends = new Friends(requesterId, requesterNickname, receiverId, receiverNickname, addDate, status);
         friendsController.addFriend(friends);
     }
 }

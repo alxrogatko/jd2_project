@@ -2,8 +2,11 @@ package by.academy.it.util;
 
 import by.academy.it.pojo.Friends;
 import by.academy.it.pojo.User;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class QueryUtil {
@@ -29,14 +32,28 @@ public class QueryUtil {
         }
     }
 
-    public static void updateFriendStatus(String requesterId, String receiverId, String status) {
-        Query<?> friendsQuery = SessionFactoryUtil.getSession().openSession().createQuery(
-                "update Friends set status =: paramStatus where requesterId =: paramId and receiverId =: paramFriendId"
+    public static void updateFriendStatus(LocalDateTime addDate, String requesterId, String receiverId, String status) {
+        Session session = SessionFactoryUtil.getSession().openSession();
+        Transaction transaction = session.beginTransaction();
+        Query<?> friendsQuery = session.createQuery(
+                "update Friends set addDate =: paramDate, status =: paramStatus where requesterId =: paramId and receiverId =: paramFriendId"
         );
+        friendsQuery.setParameter("paramDate", addDate);
         friendsQuery.setParameter("paramStatus", status);
         friendsQuery.setParameter("paramId", requesterId);
         friendsQuery.setParameter("paramFriendId", receiverId);
         friendsQuery.executeUpdate();
+        transaction.commit();
+        session.close();
+    }
+
+    public static List<Friends> showFriendsList(String mainUserId) {
+        Query<Friends> friends = SessionFactoryUtil.getSession().openSession().createQuery(
+                "from Friends where receiverId =: id and status =: status"
+        );
+        friends.setParameter("id", mainUserId);
+        friends.setParameter("status", "added");
+        return friends.list();
     }
 
     public static List<Friends> getFriendRequestsForUser(String id) {
@@ -46,5 +63,18 @@ public class QueryUtil {
         friendsQuery.setParameter("paramId", id);
         friendsQuery.setParameter("paramStatus", "request");
         return friendsQuery.list();
+    }
+
+    public static void deleteFriendRequest(String receiverId, String requesterId) {
+        Session session = SessionFactoryUtil.getSession().openSession();
+        Transaction transaction = session.beginTransaction();
+        Query<?> friendsQuery = session.createQuery(
+                "delete from Friends where receiverId =: paramReceiverId and requesterId =: paramRequesterId"
+        );
+        friendsQuery.setParameter("paramReceiverId", receiverId);
+        friendsQuery.setParameter("paramRequesterId", requesterId);
+        friendsQuery.executeUpdate();
+        transaction.commit();
+        session.close();
     }
 }

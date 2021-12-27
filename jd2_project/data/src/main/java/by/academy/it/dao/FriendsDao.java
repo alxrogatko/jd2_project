@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -59,8 +60,12 @@ public class FriendsDao {
         }
     }
 
-    public void updateFriendStatus(String ownerId, String friendId, String status) {
-        QueryUtil.updateFriendStatus(ownerId, friendId, status);
+    public List<Friends> showFriendsList(String mainUserId) {
+        return QueryUtil.showFriendsList(mainUserId);
+    }
+
+    public void updateFriendStatus(LocalDateTime addDate, String ownerId, String friendId, String status) {
+        QueryUtil.updateFriendStatus(addDate, ownerId, friendId, status);
     }
 
     public String getFriendRequestStatus(String receiverId, String requesterId) {
@@ -69,5 +74,9 @@ public class FriendsDao {
 
     public List<Friends> getFriendRequests(String id) {
         return QueryUtil.getFriendRequestsForUser(id);
+    }
+
+    public void deleteFriendRequest(String receiverId, String requesterId) {
+        QueryUtil.deleteFriendRequest(receiverId, requesterId);
     }
 }

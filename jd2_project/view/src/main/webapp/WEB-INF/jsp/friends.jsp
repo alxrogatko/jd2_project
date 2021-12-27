@@ -94,32 +94,34 @@
         </div>
 
         <c:if test="${thisIsMyFriends == true}">
-            <a href="/view/profile.html">
+            <c:forEach items="${friends}" var="friends">
+            <a href="/view/${friends.getRequesterId()}/profile.html">
                 <div class="my-friend-block">
                     <div class="avatar-in-search"></div>
-                    <div class="nickname-in-search">Test</div>
+                    <div class="nickname-in-search">${friends.getRequesterNickname()}</div>
                 </div>
             </a>
+            </c:forEach>
         </c:if>
         <c:if test="${thisIsMyFriends == false}">
             <c:forEach items="${friends}" var="friends">
                 <div class="wrapper-for-search-friend-block">
-                    <a href="/view/${friends.getOwnerId()}/profile.html">
+                    <a href="/view/${friends.getRequesterId()}/profile.html">
                         <div class="friend-request-block">
                             <div class="avatar-in-search"></div>
-                            <div class="nickname-in-search"><c:out value="${friends.getOwnerName()}"/></div>
+                            <div class="nickname-in-search"><c:out value="${friends.getRequesterNickname()}"/></div>
                         </div>
                     </a>
 
                     <a href="/friends-requests.html">
                         <form method="get">
-                            <button class="accept-or-decline-request-circle" type="submit" name="friendRequestButton"
-                                    value="accept">
+                            <button class="accept-or-decline-request-circle" type="submit" name="button"
+                                    value="${friends.getRequesterId()}">
                                 <div class="accept-or-dicline-icon">
                                     <img src="images/check.png" alt="accept">
                                 </div>
                             </button>
-                            <button class="accept-or-decline-request-circle" type="submit" name="friendRequestButton"
+                            <button class="accept-or-decline-request-circle" type="submit" name="button"
                                     value="decline">
                                 <div class="accept-or-dicline-icon">
                                     <img src="images/cancel.png">
