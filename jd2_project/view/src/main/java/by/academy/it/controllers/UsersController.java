@@ -54,15 +54,30 @@ public class UsersController {
     @GetMapping("/{id}/profile.html")
     public String showUserProfile(@PathVariable("id") String id, Model model, HttpServletRequest request) {
         User user = userController.getUserById(id);
-        String ownerId = String.valueOf(model.getAttribute("userId"));
-        String userNickname = String.valueOf(model.getAttribute("userNickname"));
+        String requesterId = String.valueOf(model.getAttribute("userId"));
+        String requesterNickname = String.valueOf(model.getAttribute("userNickname"));
 
-        if (!checkIfThisMainUserPage(id, ownerId)) {
-            String friendRequestStatus = request.getParameter("button");
-            if (friendRequestStatus != null) {
-                if (friendRequestStatus.equals("request")) {
-                    addFriendAndTableAndSetStatus(user.getNickname(), userNickname, ownerId, user.getId(), friendRequestStatus);
-                }
+        if (!checkIfThisMainUserPage(id, requesterId)) {
+            model.addAttribute("thisIsNotMainUserPage", true);
+            String buttonRequestButtonStatus = request.getParameter("button");
+            String databaseRequestStatus = friendsController.getRequestStatus(id, requesterId);
+
+            if (buttonRequestButtonStatus != null && buttonRequestButtonStatus.equals("request") && databaseRequestStatus.equals("none")) {
+                addFriendAndTableAndSetStatus(user.getNickname(), requesterNickname, requesterId, user.getId(), buttonRequestButtonStatus);
+            }
+
+            databaseRequestStatus = friendsController.getRequestStatus(id, requesterId);
+
+            switch (databaseRequestStatus) {
+                case "none":
+                    model.addAttribute("requestStatus", "none");
+                    break;
+                case "request":
+                    model.addAttribute("requestStatus", "request");
+                    break;
+                case "added":
+                    model.addAttribute("requestStatus", "added");
+                    break;
             }
         }
         model.addAttribute("user", user);
@@ -73,9 +88,9 @@ public class UsersController {
         return id.equals(userId);
     }
 
-    private void addFriendAndTableAndSetStatus(String friendName, String ownerName, String ownerId, String friendId, String status) {
+    private void addFriendAndTableAndSetStatus(String receiverNickname, String requesterNickname, String requesterId, String receiverId, String status) {
         LocalDateTime time = LocalDateTime.now();
-        Friends friends = new Friends(ownerId, ownerName, friendId, friendName, time, status);
+        Friends friends = new Friends(requesterId, requesterNickname, receiverId, receiverNickname, time, status);
         friendsController.addFriend(friends);
     }
 }

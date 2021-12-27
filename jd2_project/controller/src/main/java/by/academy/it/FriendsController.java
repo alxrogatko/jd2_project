@@ -24,11 +24,15 @@ public class FriendsController {
         return friendsDao.getFriendRequests(id);
     }
 
+    public String getRequestStatus(String receiverId, String requesterId) {
+       return friendsDao.getFriendRequestStatus(receiverId, requesterId);
+    }
+
     public void deleteFriend(Friends friends) {
         friendsDao.deleteFriend(friends);
     }
 
-    public void updateFriendStatus(String ownerId, String friendId, String status) {
-        friendsDao.updateFriendStatus(ownerId, friendId, status);
+    public void updateFriendStatus(String requesterId, String receiverId, String status) {
+        friendsDao.updateFriendStatus(requesterId, receiverId, status);
     }
 }

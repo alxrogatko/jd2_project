@@ -38,16 +38,42 @@
 
     </script>
 
-    <c:if test="${user.getId() != sessionScope.userId}">
-        <a href="/view/${user.getId()}/profile.html">
-            <form method="get">
-                <button class="add-user" type="submit" name="button" value="request">
-                    <div class="add-user-icon">
-                        <img src="../images/plus.png" alt="add-user"/>
-                    </div>
-                </button>
-            </form>
-        </a>
+    <c:if test="${thisIsNotMainUserPage == true}">
+        <c:choose>
+
+            <c:when test="${requestStatus == 'none'}">
+                    <form method="get" action="/view/${user.getId()}/profile.html">
+                        <button class="add-user" type="submit" name="button" value="request">
+                            <div class="add-user-icon">
+                                <img src="../images/plus.png" alt="add-user"/>
+                            </div>
+                        </button>
+                    </form>
+            </c:when>
+
+            <c:when test="${requestStatus == 'request'}">
+                <a href="/view/${user.getId()}/profile.html">
+                    <button class="add-user" type="submit" name="button" value="wait">
+                        <div class="add-user-icon">
+                            <img src="../images/time.png" alt="requested"/>
+                        </div>
+                    </button>
+                </a>
+            </c:when>
+
+            <c:when test="${requestStatus == 'added'}">
+                <a href="/view/${user.getId()}/profile.html">
+                    <form method="get">
+                        <button class="add-user" type="submit" name="button" value="delete">
+                            <div class="add-user-icon">
+                                <img src="../images/check.png" alt="added"/>
+                            </div>
+                        </button>
+                    </form>
+                </a>
+            </c:when>
+
+        </c:choose>
     </c:if>
 
     <div class="fast-block"></div>

@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 @Getter
 public class Friends {
 
-    public Friends(String ownerId, String ownerName, String friendId, String friendName, LocalDateTime addDate, String status) {
-        this.ownerId = ownerId;
-        this.ownerName = ownerName;
-        this.friendId = friendId;
-        this.friendName = friendName;
+    public Friends(String requesterId, String requesterNickname, String receiverId, String receiverNickname, LocalDateTime addDate, String status) {
+        this.requesterId = requesterId;
+        this.requesterNickname = requesterNickname;
+        this.receiverId = receiverId;
+        this.receiverNickname = receiverNickname;
         this.addDate = addDate;
         this.status = status;
     }
@@ -28,20 +28,20 @@ public class Friends {
     private String id;
 
     @Setter
-    @Column(name = "owner_id")
-    private String ownerId;
+    @Column(name = "requester_id")
+    private String requesterId;
 
     @Setter
-    @Column(name = "owner_name")
-    private String ownerName;
+    @Column(name = "requester_nickname")
+    private String requesterNickname;
 
     @Setter
-    @Column(name = "friend_name")
-    private String friendName;
+    @Column(name = "receiver_nickname")
+    private String receiverNickname;
 
     @Setter
-    @Column(name = "friend_id")
-    private String friendId;
+    @Column(name = "receiver_id")
+    private String receiverId;
 
     @Setter
     @Column(name = "add_date")

@@ -63,9 +63,8 @@ public class FriendsDao {
         QueryUtil.updateFriendStatus(ownerId, friendId, status);
     }
 
-    public String getFriendRequestStatus(String id) {
-        Session session = sessionFactory.openSession();
-        return session.get(Friends.class, id).getStatus();
+    public String getFriendRequestStatus(String receiverId, String requesterId) {
+        return QueryUtil.getRequestStatus(receiverId, requesterId);
     }
 
     public List<Friends> getFriendRequests(String id) {

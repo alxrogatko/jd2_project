@@ -5,10 +5,7 @@ import by.academy.it.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +20,7 @@ public class LoginController {
         this.userController = userController;
     }
 
-    @RequestMapping(value = "/home.html", method = RequestMethod.POST)
+    @PostMapping(value = "/home.html")
     public String processInputData(@RequestParam("email") String email,
                                    @RequestParam("password") String password,
                                    Model model
@@ -41,7 +38,7 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String showLoginForm() {
         return "login";
     }

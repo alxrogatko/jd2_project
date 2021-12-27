@@ -15,19 +15,33 @@ public class QueryUtil {
         return userQuery.list();
     }
 
-    public static void updateFriendStatus(String ownerId, String friendId, String status) {
+    public static String getRequestStatus(String receiverId, String requesterId) {
+        Query<Friends> friendsQuery = SessionFactoryUtil.getSession().openSession().createQuery(
+            "select status from Friends where receiverId =: paramReceiver and requesterId =: paramRequester"
+        );
+        friendsQuery.setParameter("paramReceiver", receiverId);
+        friendsQuery.setParameter("paramRequester", requesterId);
+        List<Friends> requestStatus = friendsQuery.list();
+        if (!requestStatus.isEmpty()) {
+            return String.valueOf(requestStatus.get(0));
+        } else {
+            return "none";
+        }
+    }
+
+    public static void updateFriendStatus(String requesterId, String receiverId, String status) {
         Query<?> friendsQuery = SessionFactoryUtil.getSession().openSession().createQuery(
-                "update Friends set status =: paramStatus where ownerId =: paramId and friendId =: paramFriendId"
+                "update Friends set status =: paramStatus where requesterId =: paramId and receiverId =: paramFriendId"
         );
         friendsQuery.setParameter("paramStatus", status);
-        friendsQuery.setParameter("paramId", ownerId);
-        friendsQuery.setParameter("paramFriendId", friendId);
+        friendsQuery.setParameter("paramId", requesterId);
+        friendsQuery.setParameter("paramFriendId", receiverId);
         friendsQuery.executeUpdate();
     }
 
     public static List<Friends> getFriendRequestsForUser(String id) {
         Query<Friends> friendsQuery = SessionFactoryUtil.getSession().openSession().createQuery(
-                "from Friends where friendId =: paramId and status =: paramStatus", Friends.class
+                "from Friends where receiverId =: paramId and status =: paramStatus", Friends.class
         );
         friendsQuery.setParameter("paramId", id);
         friendsQuery.setParameter("paramStatus", "request");
