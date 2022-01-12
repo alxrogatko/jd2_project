@@ -1,6 +1,6 @@
 package by.academy.it.validators;
 
-import by.academy.it.util.QueryUtil;
+import by.academy.it.util.FriendsQueries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class RegisterValidation {
         } else if (!RegexValidation.checkPasswordFormat(password)) {
             message.add("Неверный формат пароля");
         } else {
-            if (!QueryUtil.getUserByEmail(email).isEmpty()) {
+            if (!FriendsQueries.getUserByEmail(email).isEmpty()) {
                 message.add("Пользователь с такой почтой уже существует");
             } else if (nickname.isEmpty()) {
                 message.add("Введите имя аккаунта");

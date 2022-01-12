@@ -1,6 +1,6 @@
 package by.academy.it.controllers;
 
-import by.academy.it.UserController;
+import by.academy.it.UserService;
 import by.academy.it.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +14,11 @@ import java.util.List;
 @SessionAttributes({"userId", "userNickname"})
 public class RegistrationController {
 
-    private final UserController userController;
+    private final UserService userService;
 
     @Autowired
-    public RegistrationController(UserController userController) {
-        this.userController = userController;
+    public RegistrationController(UserService userService) {
+        this.userService = userService;
     }
 
     @RequestMapping(value = "/check-registration.html", method = RequestMethod.POST)
@@ -42,7 +42,7 @@ public class RegistrationController {
         }
 
         User user = new User(email.trim(), currentTime, password, currentTime, nickname, gender, age, birthday, currentTime);
-        List<String> userList = userController.newUserRegistration(user, repassword);
+        List<String> userList = userService.newUserRegistration(user, repassword);
 
         if (userList.isEmpty()) {
             return "successful-register";

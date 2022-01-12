@@ -1,6 +1,6 @@
 package by.academy.it.controllers;
 
-import by.academy.it.UserController;
+import by.academy.it.UserService;
 import by.academy.it.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,11 +13,11 @@ import java.util.List;
 @SessionAttributes({"userId", "userNickname"})
 public class LoginController {
 
-    private final UserController userController;
+    private final UserService userService;
 
     @Autowired
-    public LoginController(UserController userController) {
-        this.userController = userController;
+    public LoginController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping(value = "/home.html")
@@ -25,9 +25,9 @@ public class LoginController {
                                    @RequestParam("password") String password,
                                    Model model
     ) {
-        List<String> messages = userController.loginUser(email, password);
+        List<String> messages = userService.loginUser(email, password);
         if (messages.isEmpty()) {
-            User user = userController.getUserByEmail(email).get(0);
+            User user = userService.getUserByEmail(email).get(0);
             model.addAttribute("user", user);
             model.addAttribute("userId", user.getId());
             model.addAttribute("userNickname", user.getNickname());

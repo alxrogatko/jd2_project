@@ -9,7 +9,7 @@ import org.hibernate.query.Query;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class QueryUtil {
+public class FriendsQueries {
 
     public static List<User> getUserByEmail(String email) {
         Query<User> userQuery = SessionFactoryUtil.getSession().openSession().createQuery(

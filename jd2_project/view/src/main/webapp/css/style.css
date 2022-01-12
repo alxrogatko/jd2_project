@@ -1,24 +1,22 @@
+* {
+    margin: 0;
+}
+
 header {
-    box-sizing: border-box;
-    position: absolute;
-    top: 0px;
-    left: 0px;
+    flex: 0 0 auto;
     width: 100%;
-    height: 50px;
-    border: solid black;
-    border-width: 2px;
+    height: 5vh;
+    border: 2px solid black;
+    border-top: 0;
     border-radius: 0 0 22px 22px;
 }
 
 footer {
-    box-sizing: border-box;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
+    flex: 0 0 auto;
     width: 100%;
-    height: 50px;
-    border: solid black;
-    border-width: 2px;
+    height: 5vh;
+    border: 2px solid black;
+    border-bottom: 0;
     border-radius: 22px 22px 0 0;
 }
 
@@ -27,8 +25,48 @@ form {
     vertical-align: top;
 }
 
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content {
+    flex: 1 0 auto;
+    display: flex;
+    width: 100%;
+}
+
+.item-menu {
+    margin: 0;
+    width: 20%;
+    height: 100%;
+}
+
+.item-avatar {
+    display: inline-block;
+    margin: 0;
+    width: 50%;
+    height: 100%;
+}
+
+.item-fast-block {
+    margin-left: 0;
+    width: 28.5%;
+    height: 100%;
+}
+
 button {
-    background-color: white;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 a {
@@ -36,12 +74,11 @@ a {
 }
 
 .fast-block {
-    position: absolute;
-    right: 17px;
-    width: 500px;
-    height: 828px;
-    border: solid black;
-    border-width: 2px;
+    height: 100%;
+    width: 100%;
+    border: 2px solid black;
+    border-bottom: 0;
+    border-top: 0;
 }
 
 .logo {
@@ -52,8 +89,7 @@ a {
     height: 25px;
     color: black;
     text-align: center;
-    border: solid black;
-    border-width: 2px;
+    border: 2px solid black;
     border-radius: 22px 22px 22px 22px;
     transition: 0.5s;
 }
@@ -70,56 +106,53 @@ a {
     width: 300px;
     height: 25px;
     text-align: center;
-    border: solid black;
-    border-width: 2px;
+    border: 2px solid black;
     border-radius: 22px 22px 22px 22px;
 }
 
 .menu {
-    position: absolute;
-    left: 10px;
-    top: 430px;
-    width: 50px;
-    height: 217px;
-    border: solid black;
-    border-width: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 100%;
+    margin-left: 2%;
+    width: 15%;
+    height: 28%;
+    border: 2px solid black;
     border-radius: 22px 22px 22px 22px;
     transition: 0.5s;
 }
 
 .menu-block {
-    margin-top: 8px;
-    margin-left: 2.5px;
-    width: 40px;
-    height: 40px;
-    border: solid black;
-    border-width: 2px;
+    display: flex;
+    margin-left: 7%;
+    width: 80%;
+    height: 4.5vh;
+    border: 2px solid black;
     border-radius: 22px 22px 22px 22px;
     transition: 0.5s;
 }
 
 .icon img {
-    position: absolute;
-    margin-left: 5px;
-    margin-top: 3px;
-    width: 30px;
+    margin-left: 0.4vw;
+    margin-top: 0.4vw;
+    width: 1.5vw;
 }
 
 .menu-text {
-    text-align: center;
-    margin-top: 10px;
+    margin: auto;
     color: black;
     visibility: hidden;
     transition-delay: 0.1s;
 }
 
 .menu:hover {
-    width: 200px;
+    width: 60%;
     transition: 0.5s;
 }
 
 .menu:hover .menu-block {
-    width: 190px;
+    width: 84%;
     transition: 0.5s;
 }
 
@@ -140,8 +173,7 @@ a {
     height: 25px;
     color: black;
     text-align: center;
-    border: solid black;
-    border-width: 2px;
+    border: 2px solid black;
     border-radius: 22px 22px 22px 22px;
     transition: 0.5s;
 }
@@ -151,19 +183,13 @@ a {
     transition: 0.5s;
 }
 
-.wrapper {
-    width: 100%;
-    margin-top: 48px;
-}
-
 .avatar-block {
-    position: absolute;
-    top: 240px;
-    left: 600px;
-    width: 200px;
-    height: 200px;
-    border: solid black;
-    border-width: 2px;
+    margin-top: 20%;
+    margin-right: auto;
+    margin-left: auto;
+    width: 21%;
+    height: 21%;
+    border: 2px solid black;
     border-radius: 50%;
     transition: 0.5s;
 }
@@ -173,52 +199,34 @@ a {
     transition: 0.5s;
 }
 
-.avatar img {
-    position: absolute;
-    top: 240px;
-    left: 600px;
-    width: 200px;
-    height: 200px;
-    border: solid black;
-    border-width: 2px;
-    border-radius: 50%;
-    transition: 0.5s;
-}
-
-.avatar img:hover {
-    transform: scale(1.1);
-    transition: 0.5s;
-}
-
-
 .info-block {
-    position: absolute;
-    top: 470px;
-    left: 600px;
-    width: 200px;
-    height: 40px;
+    display: inline-block;
+    margin-left: 39.5%;
+    margin-right: auto;
+    margin-top: 2%;
+    width: 21%;
+    height: 4.5%;
     text-align: center;
-    border: solid black;
-    border-width: 2px;
+    border: 2px solid black;
     border-radius: 22px 22px 22px 22px;
     transition: 0.5s;
 }
 
 .nickname {
-    margin-top: 4px;
-    font-size: 25px;
+    margin-top: 2%;
+    font-size: 2.5vh;
 }
 
 .info {
-    margin-top: 5px;
-    font-size: 15px;
+    margin-top: 1%;
+    font-size: 1.5vh;
     line-height: 2;
     visibility: hidden;
     transition: 0.1s;
 }
 
 .info-block:hover {
-    height: 200px;
+    height: 20%;
     transition: 0.5s;
 }
 
@@ -228,77 +236,71 @@ a {
     transition-delay: 0.1s;
 }
 
-
-
-.add-user {
-    position: absolute;
-    top: 470px;
-    left: 813px;
-    width: 40px;
-    height: 40px;
-    border: solid black;
-    border-width: 2px;
+.command-circle {
+    margin-top: 2vh;
+    margin-left: 0vh;
+    display: inline-block;
+    width: 4vh;
+    height: 4vh;
+    border: 2px solid black;
     border-radius: 50%;
     transition: 0.5s;
 }
 
-.add-user:hover {
+.command-circle:hover {
     transform: scale(1.1);
     transition: 0.5s;
 }
 
 .add-user-icon img {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 5px;
+    width: 66%;
+    margin-left: 3%;
+    margin-top: 10%;
 }
 
 .news {
     position: absolute;
-    bottom: 48px;
-    left: 300px;;
-    width: 800px;
-    height: 50px;
-    background-color: white;
-    border: solid black;
-    border-width: 2px;
-    border-radius: 22px 22px 0px 0px;
+    width: 40%;
+    height: 5.6%;
+    margin-top: 43.3%;
+    border: 2px solid black;
+    border-bottom: 0;
+    border-radius: 22px 22px 0 0;
     transition: 0.7s;
 }
 
 .news:hover {
-    height: 828px;
+    height: 100%;
     transition: 0.7s;
 }
 
 .friend-box {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 500px;
-    height: 828px;
-    margin:-416px 0 0 -550px;
-    border: solid black;
-    border-width: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 100%;
+    border: 2px solid black;
+    border-top: 0;
+    border-bottom: 0;
 }
 
 .friend-choice-block {
     width: 90%;
-    margin-top: 10px;
+    margin-top: 0;
     margin-left: auto;
     margin-right: auto;
-    height: 40px;
-    border: solid black;
-    border-width: 2px;
-    border-radius: 22px 22px 22px 22px;
+    height: 4.5%;
+    border-radius: 0 0 22px 22px;
+    border: 2px solid black;
+    border-top: 0;
 }
 
 .inner-friend-choice-block {
     display: inline-block;
-    margin-left: 0px;
+    margin-left: 0;
     width: 49.55%;
     height: 100%;
-    border-radius: 22px 22px 22px 22px;
+    border-radius: 0 0 22px 22px;
     transition: 0.5s;
 }
 
@@ -310,23 +312,20 @@ a {
 .inner-friend-choice-block-text {
     text-align: center;
     color: black;
-    margin-top: 10px;
+    margin-top: 4%;
 }
 
 .wrapper-for-search-friend-block {
-    margin-top: 40px;
+    margin-top: 10%;
     width: 100%;
-    height: 70px;
 }
 
 .friend-request-block {
     vertical-align: top;
     display: inline-block;
-    margin-left: 40px;
+    margin-left: 10%;
     width: 50%;
-    height: 100%;
-    border: solid black;
-    border-width: 2px;
+    border: 2px solid black;
     border-radius: 22px 22px 22px 22px;
     transition: 0.5s;
 }
@@ -355,10 +354,9 @@ a {
 .accept-or-decline-request-circle {
     vertical-align: top;
     display: inline-block;
-    margin-left: 25px;
-    margin-top: 11px;
-    width: 50px;
-    height: 50px;
+    margin-left: 2vh;
+    margin-top: 1vh;
+    width: 6vh;
     border: 2px solid black;
     border-radius: 50%;
     transition: 0.5s;
@@ -371,8 +369,8 @@ a {
 
 .accept-or-dicline-icon img {
     width: 75%;
-    margin-left: 1px;
-    margin-top: 3px;
+    margin-left: 1%;
+    margin-top: 5%;
 }
 
 .friends-menu {
@@ -381,15 +379,15 @@ a {
     height: 4%;
     border: 2px solid black;
     border-top: none;
-    border-radius: 0px 0px 22px 22px;
+    border-radius: 0 0 22px 22px;
 }
 
 .inner-friends-menu {
     display: inline-block;
     width: 49.416%;
     height: 100%;
-    margin-left: 0px;
-    border-radius: 0px 0px 22px 22px;
+    margin-left: 0;
+    border-radius: 0 0 22px 22px;
     transition: 0.5s;
 }
 
@@ -406,10 +404,9 @@ a {
 
 .avatar-in-search {
     float: left;
-    height: 66px;
-    width: 70px;
-    border: solid black;
-    border-width: 2px;
+    height: 7vh;
+    width: 7vh;
+    border: 2px solid black;
     border-radius: 50%;
 }
 
@@ -418,4 +415,47 @@ a {
     font-size: 25px;
     text-align: center;
     color: black;
+}
+
+.messages-block {
+    margin: auto;
+    width: 80%;
+    height: 100%;
+    border: 2px solid black;
+    border-bottom: 0;
+    border-top: 0;
+}
+
+.show-block {
+    border: 2px solid black;
+    margin: auto;
+    width: 95%;
+    height: 85%;
+    border-radius: 0 0 22px 22px;
+    border-top: 0;
+}
+
+.input-block {
+    display: flex;
+    border: 2px solid black;
+    margin: auto;
+    margin-top: 5%;
+    width: 95%;
+    height: 5%;
+    border-radius: 22px 22px 22px 22px;
+}
+
+.input-block input {
+    width: 100%;
+    height: 90%;
+}
+
+.input-block form {
+    margin: auto;
+    width: 90%;
+    height: 50%;
+}
+
+input:focus {
+    outline: 0;
 }

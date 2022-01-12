@@ -1,7 +1,7 @@
 package by.academy.it.dao;
 
 import by.academy.it.pojo.Friends;
-import by.academy.it.util.QueryUtil;
+import by.academy.it.util.FriendsQueries;
 import by.academy.it.util.SessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -61,22 +61,22 @@ public class FriendsDao {
     }
 
     public List<Friends> showFriendsList(String mainUserId) {
-        return QueryUtil.showFriendsList(mainUserId);
+        return FriendsQueries.showFriendsList(mainUserId);
     }
 
     public void updateFriendStatus(LocalDateTime addDate, String ownerId, String friendId, String status) {
-        QueryUtil.updateFriendStatus(addDate, ownerId, friendId, status);
+        FriendsQueries.updateFriendStatus(addDate, ownerId, friendId, status);
     }
 
     public String getFriendRequestStatus(String receiverId, String requesterId) {
-        return QueryUtil.getRequestStatus(receiverId, requesterId);
+        return FriendsQueries.getRequestStatus(receiverId, requesterId);
     }
 
     public List<Friends> getFriendRequests(String id) {
-        return QueryUtil.getFriendRequestsForUser(id);
+        return FriendsQueries.getFriendRequestsForUser(id);
     }
 
     public void deleteFriendRequest(String receiverId, String requesterId) {
-        QueryUtil.deleteFriendRequest(receiverId, requesterId);
+        FriendsQueries.deleteFriendRequest(receiverId, requesterId);
     }
 }

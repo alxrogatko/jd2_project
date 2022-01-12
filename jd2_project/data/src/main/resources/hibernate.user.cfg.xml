@@ -14,5 +14,7 @@
         <mapping class="by.academy.it.pojo.UserPassword"/>
         <mapping class="by.academy.it.pojo.User"/>
         <mapping class="by.academy.it.pojo.Friends"/>
+        <mapping class="by.academy.it.pojo.Dialog"/>
+        <mapping class="by.academy.it.pojo.Messages"/>
     </session-factory>
 </hibernate-configuration>

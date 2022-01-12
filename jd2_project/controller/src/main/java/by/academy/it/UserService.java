@@ -14,14 +14,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserController {
+public class UserService {
     private final UserDao userDao;
     private final UserEmailDao userEmailDao;
     private final UserPasswordDao userPasswordDao;
 
-    public UserController(UserDao userDao,
-                          UserEmailDao userEmailDao,
-                          UserPasswordDao userPasswordDao) {
+    public UserService(UserDao userDao,
+                       UserEmailDao userEmailDao,
+                       UserPasswordDao userPasswordDao) {
         this.userDao = userDao;
         this.userEmailDao = userEmailDao;
         this.userPasswordDao = userPasswordDao;

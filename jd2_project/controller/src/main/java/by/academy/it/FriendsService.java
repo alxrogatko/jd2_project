@@ -2,18 +2,16 @@ package by.academy.it;
 
 import by.academy.it.dao.FriendsDao;
 import by.academy.it.pojo.Friends;
-import by.academy.it.util.QueryUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class FriendsController {
+public class FriendsService {
     private final FriendsDao friendsDao;
 
-    public FriendsController(FriendsDao friendsDao) {
+    public FriendsService(FriendsDao friendsDao) {
         this.friendsDao = friendsDao;
     }
 

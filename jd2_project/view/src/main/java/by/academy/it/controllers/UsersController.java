@@ -1,7 +1,7 @@
 package by.academy.it.controllers;
 
-import by.academy.it.FriendsController;
-import by.academy.it.UserController;
+import by.academy.it.FriendsService;
+import by.academy.it.UserService;
 import by.academy.it.pojo.Friends;
 import by.academy.it.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,28 +19,29 @@ import java.util.List;
 @SessionAttributes({"userId", "userNickname"})
 public class UsersController {
 
-    private final UserController userController;
-    private final FriendsController friendsController;
+    private final UserService userService;
+    private final FriendsService friendsService;
 
     @Autowired
-    public UsersController(UserController userController, FriendsController friendsController) {
-        this.userController = userController;
-        this.friendsController = friendsController;
+    public UsersController(UserService userService, FriendsService friendsService) {
+        this.userService = userService;
+        this.friendsService = friendsService;
     }
 
     @GetMapping("/users.html")
     public String getUsersList(Model model) {
         String id = String.valueOf(model.getAttribute("userId"));
-        List<User> userList = userController.getUserList(id);
+        List<User> userList = userService.getUserList(id);
         model.addAttribute("user", userList);
-        return "users";
+        model.addAttribute("thisIsUsers", true);
+        return "friends";
     }
 
     @GetMapping("/friends.html")
     public String getFriendsList(Model model) {
         String mainId = String.valueOf(model.getAttribute("userId"));
         model.addAttribute("thisIsMyFriends", true);
-        List<Friends> friendsList = friendsController.showFriendsList(mainId);
+        List<Friends> friendsList = friendsService.showFriendsList(mainId);
         model.addAttribute("friends", friendsList);
         return "friends";
     }
@@ -52,43 +53,43 @@ public class UsersController {
         String receiverId = String.valueOf(model.getAttribute("userId"));
 
         String requesterId = request.getParameter("button");
-        model.addAttribute("friends", friendsController.getFriendRequests(receiverId));
+        model.addAttribute("friends", friendsService.getFriendRequests(receiverId));
 
 
         if (requesterId != null) {
             if (!requesterId.equals("decline")) {
-                User requesterUser = userController.getUserById(requesterId);
+                User requesterUser = userService.getUserById(requesterId);
                 String userNickname = String.valueOf(model.getAttribute("userNickname"));
                 LocalDateTime addDate = LocalDateTime.now();
 
                 addFriendAndTableAndSetStatus(addDate, requesterUser.getNickname(), userNickname, receiverId, requesterId, "added");
-                friendsController.updateFriendStatus(addDate, requesterId, receiverId, "added");
+                friendsService.updateFriendStatus(addDate, requesterId, receiverId, "added");
             } else {
-                friendsController.deleteFriendRequest(receiverId, requesterId);
+                friendsService.deleteFriendRequest(receiverId, requesterId);
             }
         }
 
-        model.addAttribute("friends", friendsController.getFriendRequests(receiverId));
+        model.addAttribute("friends", friendsService.getFriendRequests(receiverId));
 
         return "friends";
     }
 
     @GetMapping("/{id}/profile.html")
     public String showUserProfile(@PathVariable("id") String id, Model model, HttpServletRequest request) {
-        User user = userController.getUserById(id);
+        User user = userService.getUserById(id);
         String requesterId = String.valueOf(model.getAttribute("userId"));
         String requesterNickname = String.valueOf(model.getAttribute("userNickname"));
 
         if (!checkIfThisMainUserPage(id, requesterId)) {
             model.addAttribute("thisIsNotMainUserPage", true);
             String buttonRequestButtonStatus = request.getParameter("button");
-            String databaseRequestStatus = friendsController.getRequestStatus(id, requesterId);
+            String databaseRequestStatus = friendsService.getRequestStatus(id, requesterId);
 
             if (buttonRequestButtonStatus != null && buttonRequestButtonStatus.equals("request") && databaseRequestStatus.equals("none")) {
                 addFriendAndTableAndSetStatus(LocalDateTime.now(), user.getNickname(), requesterNickname, requesterId, user.getId(), buttonRequestButtonStatus);
             }
 
-            databaseRequestStatus = friendsController.getRequestStatus(id, requesterId);
+            databaseRequestStatus = friendsService.getRequestStatus(id, requesterId);
 
             switch (databaseRequestStatus) {
                 case "none":
@@ -112,6 +113,6 @@ public class UsersController {
 
     private void addFriendAndTableAndSetStatus(LocalDateTime addDate, String receiverNickname, String requesterNickname, String requesterId, String receiverId, String status) {
         Friends friends = new Friends(requesterId, requesterNickname, receiverId, receiverNickname, addDate, status);
-        friendsController.addFriend(friends);
+        friendsService.addFriend(friends);
     }
 }
