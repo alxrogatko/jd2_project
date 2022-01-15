@@ -17,7 +17,7 @@ public class UserPasswordDaoTest extends TestSessionFactoryUtil {
 
     @BeforeAll
     static void setUp() {
-        userPasswordDao = new UserPasswordDao(TestSessionFactoryUtil.sessionFactory);
+        userPasswordDao = new UserPasswordDao();
     }
 
     @AfterAll

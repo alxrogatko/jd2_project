@@ -1,82 +1,120 @@
 package by.academy.it.dao;
 
 import by.academy.it.pojo.Friends;
-import by.academy.it.util.FriendsQueries;
-import by.academy.it.util.SessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.stereotype.Component;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Component
+@Repository
+@Transactional
 public class FriendsDao {
 
-    private final SessionFactory sessionFactory;
+    @Autowired
+    @Qualifier("usersSessionFactory")
+    private SessionFactory sessionFactory;
 
-    public FriendsDao(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    public FriendsDao() {
-        this(SessionFactoryUtil.getSession());
-    }
-
+    @Transactional
     public void addNewFriend(Friends friends) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        Session session = sessionFactory.getCurrentSession();
 
         try {
-            transaction = session.beginTransaction();
             session.save(friends);
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
-        } finally {
-            session.close();
         }
     }
 
+    @Transactional
     public void deleteFriend(Friends friends) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        Session session = sessionFactory.getCurrentSession();
 
         try {
-            transaction = session.beginTransaction();
             session.delete(friends);
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
-        } finally {
-            session.close();
         }
     }
 
     public List<Friends> showFriendsList(String mainUserId) {
-        return FriendsQueries.showFriendsList(mainUserId);
+        Session session = sessionFactory.openSession();
+
+        Query<Friends> query = session.createQuery(
+                "from Friends where receiverId =: id and status =: status", Friends.class
+        );
+        query.setParameter("id", mainUserId);
+        query.setParameter("status", "added");
+
+        List<Friends> friendsList = query.list();
+        session.close();
+        return friendsList;
     }
 
+    @Transactional
     public void updateFriendStatus(LocalDateTime addDate, String ownerId, String friendId, String status) {
-        FriendsQueries.updateFriendStatus(addDate, ownerId, friendId, status);
+        Session session = sessionFactory.getCurrentSession();
+
+        Query<?> query = session.createQuery(
+                "update Friends set addDate =: paramDate, status =: paramStatus " +
+                    "where requesterId =: paramId and receiverId =: paramFriendId"
+        );
+        query.setParameter("paramDate", addDate);
+        query.setParameter("paramStatus", status);
+        query.setParameter("paramId", ownerId);
+        query.setParameter("paramFriendId", friendId);
+
+        query.executeUpdate();
     }
 
     public String getFriendRequestStatus(String receiverId, String requesterId) {
-        return FriendsQueries.getRequestStatus(receiverId, requesterId);
+        Session session = sessionFactory.openSession();
+
+        Query<?> query = session.createQuery(
+                "select status from Friends where " +
+                    "receiverId =: paramReceiver and requesterId =: paramRequester"
+        );
+        query.setParameter("paramReceiver", receiverId);
+        query.setParameter("paramRequester", requesterId);
+        List<?> requestStatus = query.list();
+        session.close();
+
+        if (!requestStatus.isEmpty()) {
+            return String.valueOf(requestStatus.get(0));
+        } else {
+            return "none";
+        }
     }
 
     public List<Friends> getFriendRequests(String id) {
-        return FriendsQueries.getFriendRequestsForUser(id);
+        Session session = sessionFactory.openSession();
+
+        Query<Friends> query = session.createQuery(
+                "from Friends where receiverId =: paramId and status =: paramStatus", Friends.class
+        );
+        query.setParameter("paramId", id);
+        query.setParameter("paramStatus", "request");
+
+        List<Friends> friendsList = query.list();
+        session.close();
+        return friendsList;
     }
 
+    @Transactional
     public void deleteFriendRequest(String receiverId, String requesterId) {
-        FriendsQueries.deleteFriendRequest(receiverId, requesterId);
+        Session session = sessionFactory.getCurrentSession();
+
+        Query<Friends> query = session.createQuery(
+                "delete from Friends where receiverId =: paramReceiverId and requesterId =: paramRequesterId", Friends.class
+        );
+        query.setParameter("paramReceiverId", receiverId);
+        query.setParameter("paramRequesterId", requesterId);
+
+        query.executeUpdate();
     }
 }

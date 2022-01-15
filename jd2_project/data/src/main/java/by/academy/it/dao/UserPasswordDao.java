@@ -1,39 +1,29 @@
 package by.academy.it.dao;
 
 import by.academy.it.pojo.UserPassword;
-import by.academy.it.util.SessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-@Component
+@Repository
+@Transactional
 public class UserPasswordDao {
-    private final SessionFactory sessionFactory;
 
-    public UserPasswordDao(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+    @Autowired
+    @Qualifier("usersSessionFactory")
+    private SessionFactory sessionFactory;
 
-    public UserPasswordDao() {
-        this(SessionFactoryUtil.getSession());
-    }
-
+    @Transactional
     public void addUserData(UserPassword user) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        Session session = sessionFactory.getCurrentSession();
 
         try {
-            transaction = session.beginTransaction();
             session.save(user);
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
-        } finally {
-            session.close();
         }
     }
 }

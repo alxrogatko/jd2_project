@@ -2,7 +2,6 @@ package by.academy.it;
 
 import by.academy.it.dao.MessageDao;
 import by.academy.it.pojo.Messages;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class MessageService {
         messageDao.sendMessage(messages);
     }
 
-    public List<Messages> getMessages(String senderId, String receiverId) {
-        return messageDao.readMessages(senderId, receiverId);
+    public List<Messages> getMessages(String dialogId) {
+        return messageDao.readMessages(dialogId);
     }
 }

@@ -38,7 +38,7 @@
                 </div>
             </a>
 
-            <a href="/view/messages.jsp">
+            <a href="/view/messages.html">
                 <div class="menu-block">
                     <div class="icon">
                         <img src="../images/message.png" alt="messages">

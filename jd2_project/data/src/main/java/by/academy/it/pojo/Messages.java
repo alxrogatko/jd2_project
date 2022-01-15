@@ -17,7 +17,8 @@ import java.time.LocalDateTime;
 @Scope("prototype")
 public class Messages {
 
-    public Messages(String senderId, String receiverId, String message, LocalDateTime messageDate) {
+    public Messages(String dialogId, String senderId, String receiverId, String message, LocalDateTime messageDate) {
+        this.dialogId = dialogId;
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.message = message;
@@ -29,6 +30,9 @@ public class Messages {
     @GeneratedValue(generator = "uuid-generator")
     @GenericGenerator(name = "uuid-generator", strategy = "uuid")
     private String id;
+
+    @Column(name = "dialog_id")
+    private String dialogId;
 
     @Column(name = "sender_id")
     private String senderId;

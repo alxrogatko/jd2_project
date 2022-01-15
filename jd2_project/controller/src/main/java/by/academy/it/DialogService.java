@@ -2,7 +2,6 @@ package by.academy.it;
 
 import by.academy.it.dao.DialogDao;
 import by.academy.it.pojo.Dialog;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,12 +19,16 @@ public class DialogService {
         dialogDao.createDialog(dialog);
     }
 
+    public void updateDialogLastMessage(String dialogId, String message, String senderNickname) {
+        dialogDao.updateDialogLastMessage(dialogId, message, senderNickname);
+    }
+
     public List<Dialog> getDialogList(String userId) {
         return dialogDao.getDialogList(userId);
     }
 
-    public boolean checkIfDialogExist(String firstUser, String secondUser) {
-        return dialogDao.checkIfDialogExist(firstUser, secondUser);
+    public List<Dialog> getDialog(String firstUser, String secondUser) {
+        return dialogDao.getDialog(firstUser, secondUser);
     }
 
 }

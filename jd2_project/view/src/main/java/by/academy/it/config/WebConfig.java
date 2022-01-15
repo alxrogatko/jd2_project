@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan({"by.academy.it", "by.academy.it.controllers", "by.academy.it.dao", "by.academy.it.pojo"})
+@ComponentScan({"by.academy.it", "by.academy.it.controllers", "by.academy.it.dao", "by.academy.it.pojo", "by.academy.it.config"})
 public class WebConfig {
 
     @Bean

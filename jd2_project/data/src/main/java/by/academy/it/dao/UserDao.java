@@ -1,61 +1,62 @@
 package by.academy.it.dao;
 
 import by.academy.it.pojo.User;
-import by.academy.it.util.FriendsQueries;
-import by.academy.it.util.SessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Component
+@Repository
+@Transactional
 public class UserDao {
 
-    private final SessionFactory sessionFactory;
+    @Autowired
+    @Qualifier("usersSessionFactory")
+    private SessionFactory sessionFactory;
 
-    public UserDao(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    public UserDao() {
-        this(SessionFactoryUtil.getSession());
-    }
-
+    @Transactional
     public void addUser(User user) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        Session session = sessionFactory.getCurrentSession();
 
         try {
-            transaction = session.beginTransaction();
             session.save(user);
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
-        } finally {
-            session.close();
         }
     }
 
     public List<User> getUsersList(String id) {
-        Query<User> query = sessionFactory.openSession().createQuery("from User where id !=: paramId", User.class);
+        Session session = sessionFactory.openSession();
+
+        Query<User> query = session.createQuery("from User where id !=: paramId", User.class);
         query.setParameter("paramId", id);
 
-        return query.list();
+        List<User> userList = query.list();
+        session.close();
+        return userList;
     }
 
     public List<User> getUserByEmail(String email) {
-        return FriendsQueries.getUserByEmail(email);
+        Session session = sessionFactory.openSession();
+
+        Query<User> query = session.createQuery("from User where email =: paramEmail", User.class);
+        query.setParameter("paramEmail", email);
+
+        List<User> userList = query.list();
+        session.close();
+        return userList;
     }
 
     public User getUserById(String id) {
         Session session = sessionFactory.openSession();
+
         User user = session.get(User.class, id);
+
         session.close();
         return user;
     }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,11 +29,12 @@ public class RegistrationController {
             @RequestParam("nickname") String nickname,
             @RequestParam("password") String password,
             @RequestParam("repassword") String repassword,
-            @RequestParam(value = "gender", required = false) String gender,
             @RequestParam(value = "age", required = false) String age,
             @RequestParam(value = "birthday", required = false) String birthday
-    ) {
+    ) throws UnsupportedEncodingException {
+
         LocalDateTime currentTime = LocalDateTime.now();
+        request.setCharacterEncoding("UTF-8");
 
         if (age.isEmpty()) {
             age = "Не указано";
@@ -41,7 +43,7 @@ public class RegistrationController {
             birthday = "Не указано";
         }
 
-        User user = new User(email.trim(), currentTime, password, currentTime, nickname, gender, age, birthday, currentTime);
+        User user = new User(email.trim(), currentTime, password, currentTime, nickname, request.getParameter("gender"), age, birthday, currentTime);
         List<String> userList = userService.newUserRegistration(user, repassword);
 
         if (userList.isEmpty()) {

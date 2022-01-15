@@ -17,7 +17,7 @@ public class UserEmailDaoTest extends TestSessionFactoryUtil {
 
     @BeforeAll
     static void setUp() {
-        userEmailDao = new UserEmailDao(TestSessionFactoryUtil.sessionFactory);
+        userEmailDao = new UserEmailDao();
     }
 
     @AfterAll

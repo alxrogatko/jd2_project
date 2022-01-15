@@ -1,46 +1,45 @@
 package by.academy.it.dao;
 
 import by.academy.it.pojo.Messages;
-import by.academy.it.util.MessagesQueries;
-import by.academy.it.util.SessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.stereotype.Component;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Component
+@Repository
+@Transactional
 public class MessageDao {
 
-    private final SessionFactory sessionFactory;
+    @Autowired
+    @Qualifier("usersSessionFactory")
+    private SessionFactory sessionFactory;
 
-    public MessageDao(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    public MessageDao() {
-        this(SessionFactoryUtil.getSession());
-    }
-
+    @Transactional
     public void sendMessage(Messages messages) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
+        Session session = sessionFactory.getCurrentSession();
+
         try {
-            transaction = session.beginTransaction();
             session.save(messages);
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
-        } finally {
-            session.close();
         }
     }
 
-    public List<Messages> readMessages(String senderId, String receiverId) {
-        return MessagesQueries.getMessagesList(senderId, receiverId);
+    public List<Messages> readMessages(String dialogId) {
+        Session session = sessionFactory.openSession();
+
+        Query<Messages> query = session.createQuery(
+                "from Messages where dialogId =: dialogParam", Messages.class
+        );
+        query.setParameter("dialogParam", dialogId);
+
+        List<Messages> messagesList = query.list();
+        session.close();
+        return messagesList;
     }
 }
