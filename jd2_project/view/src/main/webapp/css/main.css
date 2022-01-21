@@ -181,14 +181,14 @@ iframe {
 .txt1 {
     font-family: Poppins-Regular;
     font-size: 13px;
-    color: #666666;
+    color: white;
     line-height: 1.5;
 }
 
 .txt2 {
     font-family: Poppins-Regular;
     font-size: 13px;
-    color: #333333;
+    color: wheat;
     line-height: 1.5;
 }
 
@@ -212,6 +212,7 @@ iframe {
     justify-content: center;
     align-items: center;
     padding: 15px;
+    background-color: #27292d;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -219,7 +220,7 @@ iframe {
 
 .wrap-login100 {
     width: 390px;
-    background: #fff;
+    background: #383B40;
     border-radius: 10px;
     overflow: hidden;
     padding: 77px 55px 33px 55px;
@@ -243,7 +244,7 @@ iframe {
     display: block;
     font-family: Poppins-Bold;
     font-size: 30px;
-    color: #333333;
+    color: white;
     line-height: 1.2;
     text-align: center;
 }
@@ -255,6 +256,10 @@ iframe {
 /*------------------------------------------------------------------
 [ Input ]*/
 
+.radio-style {
+    color: darkgray;
+}
+
 .wrap-input100 {
     width: 100%;
     position: relative;
@@ -265,7 +270,7 @@ iframe {
 .input100 {
     font-family: Poppins-Regular;
     font-size: 15px;
-    color: #555555;
+    color: white;
     line-height: 1.2;
 
     display: block;

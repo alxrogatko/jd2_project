@@ -34,7 +34,7 @@ public class LoginController {
             model.addAttribute("user", user);
             model.addAttribute("userId", user.getId());
             model.addAttribute("userNickname", user.getNickname());
-            return "redirect:" + user.getId() + "/profile.html";
+            return "redirect:/" + user.getId() + "/profile.html";
         } else {
             model.addAttribute("exception", messages.get(0));
             return "login";

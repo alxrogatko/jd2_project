@@ -58,12 +58,7 @@ public class UsersController {
 
         if (requesterId != null) {
             if (!requesterId.equals("decline")) {
-                User requesterUser = userService.getUserById(requesterId);
-                String userNickname = String.valueOf(model.getAttribute("userNickname"));
-                LocalDateTime addDate = LocalDateTime.now();
-
-                addFriendAndTableAndSetStatus(addDate, requesterUser.getNickname(), userNickname, receiverId, requesterId, "added");
-                friendsService.updateFriendStatus(addDate, requesterId, receiverId, "added");
+                friendsService.updateFriendStatus(LocalDateTime.now(), requesterId, receiverId, "added");
             } else {
                 friendsService.deleteFriendRequest(receiverId, requesterId);
             }
@@ -82,11 +77,11 @@ public class UsersController {
 
         if (!checkIfThisMainUserPage(id, requesterId)) {
             model.addAttribute("thisIsNotMainUserPage", true);
-            String buttonRequestButtonStatus = request.getParameter("button");
+            String buttonRequestStatus = request.getParameter("button");
             String databaseRequestStatus = friendsService.getRequestStatus(id, requesterId);
 
-            if (buttonRequestButtonStatus != null && buttonRequestButtonStatus.equals("request") && databaseRequestStatus.equals("none")) {
-                addFriendAndTableAndSetStatus(LocalDateTime.now(), user.getNickname(), requesterNickname, requesterId, user.getId(), buttonRequestButtonStatus);
+            if (buttonRequestStatus != null && buttonRequestStatus.equals("request") && databaseRequestStatus.equals("none")) {
+                addFriendAndTableAndSetStatus(LocalDateTime.now(), user.getNickname(), requesterNickname, requesterId, user.getId(), buttonRequestStatus);
             }
 
             databaseRequestStatus = friendsService.getRequestStatus(id, requesterId);

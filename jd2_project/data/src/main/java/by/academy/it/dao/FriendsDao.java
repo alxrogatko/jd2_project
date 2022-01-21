@@ -46,7 +46,7 @@ public class FriendsDao {
         Session session = sessionFactory.openSession();
 
         Query<Friends> query = session.createQuery(
-                "from Friends where receiverId =: id and status =: status", Friends.class
+                "from Friends where receiverId =: id or requesterId =: id and status =: status", Friends.class
         );
         query.setParameter("id", mainUserId);
         query.setParameter("status", "added");
@@ -109,8 +109,8 @@ public class FriendsDao {
     public void deleteFriendRequest(String receiverId, String requesterId) {
         Session session = sessionFactory.getCurrentSession();
 
-        Query<Friends> query = session.createQuery(
-                "delete from Friends where receiverId =: paramReceiverId and requesterId =: paramRequesterId", Friends.class
+        Query<?> query = session.createQuery(
+                "delete from Friends where receiverId =: paramReceiverId and requesterId =: paramRequesterId"
         );
         query.setParameter("paramReceiverId", receiverId);
         query.setParameter("paramRequesterId", requesterId);
