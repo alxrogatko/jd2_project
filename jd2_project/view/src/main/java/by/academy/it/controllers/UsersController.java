@@ -41,7 +41,7 @@ public class UsersController {
     public String getFriendsList(Model model) {
         String mainId = String.valueOf(model.getAttribute("userId"));
         model.addAttribute("thisIsMyFriends", true);
-        List<Friends> friendsList = friendsService.showFriendsList(mainId);
+        List<Friends> friendsList = friendsService.getFriendsList(mainId);
         model.addAttribute("friends", friendsList);
         return "friends";
     }
@@ -78,10 +78,23 @@ public class UsersController {
         if (!checkIfThisMainUserPage(id, requesterId)) {
             model.addAttribute("thisIsNotMainUserPage", true);
             String buttonRequestStatus = request.getParameter("button");
-            String databaseRequestStatus = friendsService.getRequestStatus(id, requesterId);
+            String databaseRequestStatus;
 
-            if (buttonRequestStatus != null && buttonRequestStatus.equals("request") && databaseRequestStatus.equals("none")) {
-                addFriendAndTableAndSetStatus(LocalDateTime.now(), user.getNickname(), requesterNickname, requesterId, user.getId(), buttonRequestStatus);
+            if (buttonRequestStatus != null) {
+                databaseRequestStatus = friendsService.getRequestStatus(id, requesterId);
+
+                if (buttonRequestStatus.equals("request") && databaseRequestStatus.equals("none")) {
+                    addFriendAndTableAndSetStatus(
+                            LocalDateTime.now(),
+                            user.getNickname(),
+                            requesterNickname,
+                            requesterId,
+                            user.getId(),
+                            buttonRequestStatus
+                    );
+                } else if (buttonRequestStatus.equals("delete")) {
+                    friendsService.deleteFriend(user.getId(), requesterId);
+                }
             }
 
             databaseRequestStatus = friendsService.getRequestStatus(id, requesterId);
