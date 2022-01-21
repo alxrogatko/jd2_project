@@ -19,7 +19,7 @@ public class FriendsService {
         friendsDao.addNewFriend(friends);
     }
 
-    public List<Friends> showFriendsList(String mainUserId) {
+    public List<Friends> getFriendsList(String mainUserId) {
         return friendsDao.showFriendsList(mainUserId);
     }
 
@@ -31,8 +31,8 @@ public class FriendsService {
        return friendsDao.getFriendRequestStatus(receiverId, requesterId);
     }
 
-    public void deleteFriend(Friends friends) {
-        friendsDao.deleteFriend(friends);
+    public void deleteFriend(String receiverId, String requesterId) {
+        friendsDao.deleteFriend(receiverId, requesterId);
     }
 
     public void deleteFriendRequest(String receiverId, String requesterId) {

@@ -32,21 +32,25 @@ public class FriendsDao {
     }
 
     @Transactional
-    public void deleteFriend(Friends friends) {
+    public void deleteFriend(String receiverId, String requesterId) {
         Session session = sessionFactory.getCurrentSession();
 
-        try {
-            session.delete(friends);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Query<?> query = session.createQuery(
+                "delete from Friends where " +
+                    "receiverId =: paramReceiver and requesterId =: paramRequester " +
+                    "or " +
+                    "receiverId =: paramRequester and requesterId =: paramReceiver "
+        );
+        query.setParameter("paramReceiver", receiverId);
+        query.setParameter("paramRequester", requesterId);
+        query.executeUpdate();
     }
 
     public List<Friends> showFriendsList(String mainUserId) {
         Session session = sessionFactory.openSession();
 
         Query<Friends> query = session.createQuery(
-                "from Friends where receiverId =: id or requesterId =: id and status =: status", Friends.class
+                "from Friends where (receiverId =: id or requesterId =: id) and status =: status", Friends.class
         );
         query.setParameter("id", mainUserId);
         query.setParameter("status", "added");
@@ -77,7 +81,9 @@ public class FriendsDao {
 
         Query<?> query = session.createQuery(
                 "select status from Friends where " +
-                    "receiverId =: paramReceiver and requesterId =: paramRequester"
+                    "receiverId =: paramReceiver and requesterId =: paramRequester " +
+                    "or " +
+                    "receiverId =: paramRequester and requesterId =: paramReceiver "
         );
         query.setParameter("paramReceiver", receiverId);
         query.setParameter("paramRequester", requesterId);
