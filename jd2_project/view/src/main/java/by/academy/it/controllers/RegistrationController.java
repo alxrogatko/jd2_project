@@ -22,7 +22,7 @@ public class RegistrationController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/check-registration.html", method = RequestMethod.POST)
+    @PostMapping(value = "/check-registration.html")
     public String checkInputData(
             HttpServletRequest request,
             @RequestParam("email") String email,
@@ -32,9 +32,9 @@ public class RegistrationController {
             @RequestParam(value = "age", required = false) String age,
             @RequestParam(value = "birthday", required = false) String birthday
     ) throws UnsupportedEncodingException {
-
         LocalDateTime currentTime = LocalDateTime.now();
         request.setCharacterEncoding("UTF-8");
+        String gender = request.getParameter("gender");
 
         if (age.isEmpty()) {
             age = "Не указано";
@@ -43,7 +43,7 @@ public class RegistrationController {
             birthday = "Не указано";
         }
 
-        User user = new User(email.trim(), currentTime, password, currentTime, nickname, request.getParameter("gender"), age, birthday, currentTime);
+        User user = new User(email.trim(), currentTime, password, currentTime, nickname, gender, age, birthday, currentTime);
         List<String> userList = userService.newUserRegistration(user, repassword);
 
         if (userList.isEmpty()) {
