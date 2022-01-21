@@ -168,7 +168,9 @@
 </div>
 
 <footer>
-    <div class="logout">Выход</div>
+    <a href="/view/logout.html">
+        <div class="logout">Выход</div>
+    </a>
 </footer>
 </body>
 </html>

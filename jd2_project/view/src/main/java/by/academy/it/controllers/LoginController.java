@@ -23,7 +23,7 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/home.html")
+    @PostMapping(value = "/authorization.do")
     public String processInputData(@RequestParam("email") String email,
                                    @RequestParam("password") String password,
                                    Model model
@@ -41,7 +41,7 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/")
+    @GetMapping(value = {"/", "/login.html"})
     public String showLoginForm() {
         return "login";
     }
