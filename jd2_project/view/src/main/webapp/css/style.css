@@ -7,9 +7,9 @@ header {
     flex: 0 0 auto;
     width: 100%;
     height: 7vh;
-    border: 1px solid darkgray;
+    border: 0.1vh solid darkgray;
     border-top: 0;
-    border-radius: 0 0 22px 22px;
+    border-radius: 0 0 2vh 2vh;
 }
 
 footer {
@@ -17,9 +17,9 @@ footer {
     flex: 0 0 auto;
     width: 100%;
     height: 7vh;
-    border: 1px solid darkgray;
+    border: 0.1vh solid darkgray;
     border-bottom: 0;
-    border-radius: 22px 22px 0 0;
+    border-radius: 2vh 2vh 0 0;
 }
 
 form {
@@ -79,7 +79,7 @@ a {
 .fast-block {
     height: 100%;
     width: 100%;
-    border: 1px solid darkgrey;
+    border: 0.1vh solid darkgrey;
     border-bottom: 0;
     border-top: 0;
     -moz-box-shadow: 8px 10px 9px 4px rgba(0, 0, 0, 0.27);
@@ -87,34 +87,37 @@ a {
 }
 
 .logo {
+    font-size: 2vh;
     float: left;
-    margin-top: 10px;
-    margin-left: 50px;
-    width: 100px;
-    height: 25px;
-    color: black;
+    margin-top: 1.5vh;
+    margin-left: 3%;
+    width: 5%;
+    height: 46%;
+    color: white;
     text-align: center;
-    border: 1px solid darkgray;
-    border-radius: 22px 22px 22px 22px;
+    border: 0.1vh solid darkgray;
+    border-radius: 2vh 2vh 2vh 2vh;
     transition: 0.5s;
     -moz-box-shadow: 8px 10px 9px 4px rgba(0, 0, 0, 0.27);
     box-shadow: 8px 10px 9px 4px rgba(0, 0, 0, 0.27);
 }
 
 .logo:hover {
-    background-color: lightgray;
+    background-color: MediumPurple;
     transition: 0.5s;
 }
 
 .search {
+    font-size: 2vh;
     float: right;
-    margin-top: 10px;
-    margin-right: 105px;
-    width: 300px;
-    height: 25px;
+    margin-top: 2vh;
+    margin-right: 8%;
+    width: 15%;
+    height: 37%;
     text-align: center;
-    border: 1px solid darkgray;
-    border-radius: 22px 22px 22px 22px;
+    color: white;
+    border: 0.1vh solid darkgray;
+    border-radius: 2vh 2vh 2vh 2vh;
     -moz-box-shadow: 8px 10px 9px 4px rgba(0, 0, 0, 0.27);
     box-shadow: 8px 10px 9px 4px rgba(0, 0, 0, 0.27);
 }
@@ -128,8 +131,8 @@ a {
     margin-left: 2%;
     width: 15%;
     height: 28%;
-    border: 1px solid darkgray;
-    border-radius: 22px 22px 22px 22px;
+    border: 0.1vh solid darkgray;
+    border-radius: 2vh 2vh 2vh 2vh;
     transition: 0.5s;
     -moz-box-shadow: 8px 10px 9px 4px rgba(0, 0, 0, 0.27);
     box-shadow: 8px 10px 9px 4px rgba(0, 0, 0, 0.27);
@@ -140,7 +143,7 @@ a {
     margin-left: 7%;
     width: 80%;
     height: 4.5vh;
-    border-radius: 22px 22px 22px 22px;
+    border-radius: 2vh 2vh 2vh 2vh;
     transition: 0.5s;
 }
 
@@ -152,7 +155,7 @@ a {
 
 .menu-text {
     margin: auto;
-    color: black;
+    color: white;
     visibility: hidden;
     transition-delay: 0.1s;
 }
@@ -168,7 +171,7 @@ a {
 }
 
 .menu-block:hover {
-    background-color: lightgray;
+    background-color: MediumPurple;
     transition: 0.5s;
 }
 
@@ -177,23 +180,23 @@ a {
 }
 
 .logout {
+    font-size: 2vh;
     float: right;
-    margin-top: 10px;
-    margin-right: 50px;
-    width: 100px;
-    height: 25px;
-    color: black;
+    margin-top: 1%;
+    margin-right: 4%;
+    width: 5%;
+    height: 49%;
+    color: white;
     text-align: center;
-    border: 1px solid darkgray;
-    border-radius: 22px 22px 22px 22px;
+    border: 0.1vh solid darkgray;
+    border-radius: 2vh 2vh 2vh 2vh;
     transition: 0.5s;
-    -webkit-box-shadow: 8px 10px 9px 4px rgba(0, 0, 0, 0.27);
     -moz-box-shadow: 8px 10px 9px 4px rgba(0, 0, 0, 0.27);
     box-shadow: 8px 10px 9px 4px rgba(0, 0, 0, 0.27);
 }
 
 .logout:hover {
-    background-color: lightgray;
+    background-color: MediumPurple;
     transition: 0.5s;
 }
 
@@ -204,7 +207,7 @@ a {
     margin-left: auto;
     width: 21%;
     height: 21%;
-    border: 1px solid darkgray;
+    border: 0.1vh solid darkgray;
     border-radius: 50%;
     transition: 0.5s;
     box-shadow: 8px 10px 9px 4px rgba(0, 0, 0, 0.27);
@@ -225,8 +228,8 @@ a {
     width: 21%;
     height: 4.5%;
     text-align: center;
-    border: 1px solid darkgray;
-    border-radius: 22px 22px 22px 22px;
+    border: 0.1vh solid darkgray;
+    border-radius: 2vh 2vh 2vh 2vh;
     transition: 0.5s;
     -moz-box-shadow: 8px 10px 9px 4px rgba(0, 0, 0, 0.27);
     box-shadow: 8px 10px 9px 4px rgba(0, 0, 0, 0.27);
@@ -262,7 +265,7 @@ a {
     display: inline-block;
     width: 4vh;
     height: 4vh;
-    border: 1px solid lightgray;
+    border: 0.1vh solid lightgray;
     border-radius: 50%;
     transition: 0.5s;
     box-shadow: 8px 10px 9px 4px rgb(0 0 0 / 27%);
@@ -284,9 +287,9 @@ a {
     width: 40%;
     height: 5.6%;
     margin-top: 43.3%;
-    border: 2px solid black;
+    border: 0.1vh solid black;
     border-bottom: 0;
-    border-radius: 22px 22px 0 0;
+    border-radius: 2vh 2vh 0 0;
     transition: 0.7s;
 }
 
@@ -300,7 +303,7 @@ a {
     margin-right: auto;
     width: 60%;
     height: 100%;
-    border: 1px solid lightgray;
+    border: 0.1vh solid lightgray;
     border-top: 0;
     border-bottom: 0;
     box-shadow: 8px 10px 9px 4px rgb(0 0 0 / 27%);
@@ -312,8 +315,8 @@ a {
     margin-left: auto;
     margin-right: auto;
     height: 4.5%;
-    border-radius: 0 0 22px 22px;
-    border: 2px solid lightgray;
+    border-radius: 0 0 2vh 2vh;
+    border: 0.1vh solid lightgray;
     border-top: 0;
     background-color: #383B40;
     box-shadow: 8px 10px 9px 4px rgb(0 0 0 / 27%);
@@ -324,16 +327,17 @@ a {
     margin-left: 0;
     width: 49.55%;
     height: 100%;
-    border-radius: 0 0 22px 22px;
+    border-radius: 0 0 2vh 2vh;
     transition: 0.5s;
 }
 
 .inner-friend-choice-block:hover {
-    background-color: lightgray;
+    background-color: MediumPurple;
     transition: 0.5s;
 }
 
 .inner-friend-choice-block-text {
+    font-size: 1.5vh;
     text-align: center;
     color: white;
     margin-top: 4%;
@@ -352,14 +356,14 @@ a {
     margin-left: 10%;
     width: 50%;
     height: 97%;
-    border: 2px solid darkgray;
-    border-radius: 22px 22px 22px 22px;
+    border: 0.1vh solid darkgray;
+    border-radius: 2vh 2vh 2vh 2vh;
     transition: 0.5s;
     box-shadow: 8px 10px 9px 4px rgb(0 0 0 / 27%);
 }
 
 .friend-request-block:hover {
-    background-color: lightgray;
+    background-color: MediumPurple;
     transition: 0.5s;
 }
 
@@ -370,14 +374,14 @@ a {
     margin-top: 40px;
     width: 50%;
     height: 70px;
-    border: 1px solid lightgray;
-    border-radius: 22px 22px 22px 22px;
+    border: 0.1vh solid lightgray;
+    border-radius: 2vh 2vh 2vh 2vh;
     transition: 0.5s;
     box-shadow: 8px 10px 9px 4px rgb(0 0 0 / 27%);
 }
 
 .my-friend-block:hover {
-    background-color: lightgray;
+    background-color: MediumPurple;
     transition: 0.5s;
 }
 
@@ -389,7 +393,7 @@ a {
     margin-top: 1vh;
     width: 6vh;
     height: 6vh;
-    border: 2px solid darkgray;
+    border: 0.1vh solid darkgray;
     border-radius: 50%;
     transition: 0.5s;
     box-shadow: 8px 10px 9px 4px rgb(0 0 0 / 27%);
@@ -411,9 +415,9 @@ a {
     margin-left: 15%;
     width: 68%;
     height: 4%;
-    border: 2px solid lightgray;
+    border: 0.1vh solid lightgray;
     border-top: none;
-    border-radius: 0 0 22px 22px;
+    border-radius: 0 0 2vh 2vh;
     box-shadow: 8px 10px 9px 4px rgb(0 0 0 / 27%);
 }
 
@@ -422,16 +426,17 @@ a {
     width: 49.416%;
     height: 100%;
     margin-left: 0;
-    border-radius: 0 0 22px 22px;
+    border-radius: 0 0 2vh 2vh;
     transition: 0.5s;
 }
 
 .inner-friends-menu:hover {
-    background-color: lightgray;
+    background-color: MediumPurple;
     transition: 0.5s;
 }
 
 .friends-menu-text {
+    font-size: 1.5vh;
     text-align: center;
     margin-top: 6px;
     color: white;
@@ -441,14 +446,14 @@ a {
    float: left;
    height: 97%;
    width: 7.5vh;
-   border: 1px solid lightgray;
+   border: 0.1vh solid lightgray;
    border-radius: 50%;
    box-shadow: 3px 3px 9px 4px rgb(0 0 0 / 27%);
 }
 
 .nickname-in-search {
     margin-top: 20px;
-    font-size: 25px;
+    font-size: 3vh;
     text-align: center;
     color: white;
 }
@@ -457,7 +462,7 @@ a {
     margin: auto;
     width: 80%;
     height: 100%;
-    border: 1px solid darkgray;
+    border: 0.1vh solid darkgray;
     border-bottom: 0;
     border-top: 0;
     box-shadow: 8px 10px 9px 4px rgb(0 0 0 / 27%);
@@ -468,16 +473,16 @@ a {
     flex-direction: column;
     justify-content: flex-end;
     flex-wrap: nowrap;
-    border: 2px solid black;
+    border: 0.1vh solid black;
     margin: auto;
     width: 95%;
     height: 85%;
-    border-radius: 0 0 22px 22px;
+    border-radius: 0 0 2vh 2vh;
     border-top: 0;
 }
 
 .show-block-with-messages-list {
-    border: 1px solid darkgray;
+    border: 0.1vh solid darkgray;
     margin: auto;
     width: 95%;
     height: 100%;
@@ -505,7 +510,7 @@ a {
     word-break: break-all;
     font-size: 140%;
     max-width: 60%;
-    border-radius: 22px 22px 22px 22px;
+    border-radius: 2vh 2vh 2vh 2vh;
     box-shadow: 8px 10px 9px 4px rgb(0 0 0 / 27%);
 }
 
@@ -515,17 +520,17 @@ a {
     word-break: break-all;
     font-size: 140%;
     max-width: 60%;
-    border-radius: 22px 22px 22px 22px;
+    border-radius: 2vh 2vh 2vh 2vh;
     box-shadow: 8px 10px 9px 4px rgb(0 0 0 / 27%);
 }
 
 .search-dialog {
     background-color: #383B40;
-    border: 1px solid white;
+    border: 0.1vh solid white;
     margin: auto;
     width: 70%;
     height: 4%;
-    border-radius: 0px 0px 22px 22px;
+    border-radius: 2vh 2vh 2vh 2vh;
     border-top: 0;
     box-shadow: 8px 10px 9px 4px rgb(0 0 0 / 27%);
 }
@@ -540,12 +545,12 @@ a {
     background-color: #383B40;
     display: flex;
     flex-direction: row;
-    border: 1px solid darkgray;
+    border: 0.1vh solid darkgray;
     margin-top: 1%;
     margin-left: 7%;
     width: 60%;
     height: 10%;
-    border-radius: 22px 22px 22px 22px;
+    border-radius: 2vh 2vh 2vh 2vh;
     transition: 0.5s;
     box-shadow: 8px 10px 9px 4px rgb(0 0 0 / 27%);
 }
@@ -556,7 +561,7 @@ a {
 }
 
 .dialog-avatar {
-    border: 1px solid darkgray;
+    border: 0.1vh solid darkgray;
     width: 7.5vh;
     height: 97%;
     border-radius: 50%;
@@ -583,12 +588,12 @@ a {
 
 .input-block {
     display: flex;
-    border: 1px solid darkgray;
+    border: 0.1vh solid darkgray;
     margin: auto;
     margin-top: 5%;
     width: 95%;
     height: 5%;
-    border-radius: 22px 22px 22px 22px;
+    border-radius: 2vh 2vh 2vh 2vh;
     box-shadow: 8px 10px 9px 4px rgb(0 0 0 / 27%);
 }
 
