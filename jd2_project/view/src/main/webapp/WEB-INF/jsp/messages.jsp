@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${userId == null}">
+    <c:redirect url="/"/>
+</c:if>
 <!doctype HTML>
 <html>
 <head>

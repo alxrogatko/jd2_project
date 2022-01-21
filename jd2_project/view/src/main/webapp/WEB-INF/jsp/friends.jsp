@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${userId == null}">
+    <c:redirect url="/"/>
+</c:if>
 <!doctype HTML>
 <html>
 <head>
@@ -109,12 +112,22 @@
 
             <c:if test="${thisIsMyFriends == true}">
                 <c:forEach items="${friends}" var="friends">
+                    <c:if test="${friends.getRequesterId() == userId}">
+                        <a href="/view/${friends.getReceiverId()}/profile.html">
+                            <div class="my-friend-block">
+                                <div class="avatar-in-search"></div>
+                                <div class="nickname-in-search">${friends.getReceiverNickname()}</div>
+                            </div>
+                        </a>
+                    </c:if>
+                    <c:if test="${friends.getRequesterId() != userId}">
                     <a href="/view/${friends.getRequesterId()}/profile.html">
                         <div class="my-friend-block">
                             <div class="avatar-in-search"></div>
                             <div class="nickname-in-search">${friends.getRequesterNickname()}</div>
                         </div>
                     </a>
+                    </c:if>
                 </c:forEach>
             </c:if>
             <c:if test="${thisIsMyFriends == false}">

@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${userId != null}">
+    <c:redirect url="/${userId}/profile.html"/>
+</c:if>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +16,7 @@
 </head>
 <body>
 <div class="limiter">
-    <div class="container-login100" style="background-image: url('images/project.gif');">
+    <div class="container-login100">
         <div class="wrap-login100">
             <form class="login100-form validate-form" method="post" action="/view/home.html">
 					<span class="login100-form-title p-b-26">

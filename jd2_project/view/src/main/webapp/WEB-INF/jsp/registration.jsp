@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${userId != null}">
+    <c:redirect url="/${userId}/profile.html"/>
+</c:if>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +15,7 @@
 </head>
 <body>
 <div class="limiter">
-    <div class="container-login100" style="background-image: url('images/project.gif');">
+    <div class="container-login100">
         <div class="wrap-login100">
             <form class="login100-form validate-form" accept-charset="UTF-8" method="post" action="/view/check-registration.html">
 					<span class="login100-form-title p-b-26">
@@ -50,16 +53,18 @@
                     <span class="focus-input100" data-placeholder="Повторите пароль"></span>
                 </div>
 
-                Пол: <input type="radio" name="gender" value="женский" checked/>Женский
-                <input type="radio" name="gender" value="мужской"/>Мужской
-                <input type="radio" name="gender" value="не указан"/>Не указывать
+                <div class="radio-style">
+                        Пол: <input type="radio" name="gender" value="женский" checked/>Женский
+                        <input type="radio" name="gender" value="мужской"/>Мужской
+                        <input type="radio" name="gender" value="не указан"/>Не указывать
+                </div>
 
                 <div class="wrap-input100">
                     <input class="input100" type="text" name="age">
                     <span class="focus-input100" data-placeholder="Возраст"></span>
                 </div>
 
-                <div style="margin-top:20px">
+                <div class="radio-style">
                     <label for="date">Дата рождения: </label>
                     <input type="date" id="date" name="birthday"/>
                 </div>
