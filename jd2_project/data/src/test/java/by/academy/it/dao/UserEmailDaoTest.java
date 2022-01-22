@@ -1,5 +1,6 @@
 package by.academy.it.dao;
 
+import by.academy.it.config.TestDaoConfig;
 import by.academy.it.pojo.UserEmail;
 import by.academy.it.util.TestSessionFactoryUtil;
 import org.hibernate.Session;
@@ -8,26 +9,22 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class UserEmailDaoTest extends TestSessionFactoryUtil {
-    private static UserEmailDao userEmailDao;
+import static by.academy.it.util.TestSessionFactoryUtil.sessionFactory;
 
-    @BeforeAll
-    static void setUp() {
-        userEmailDao = new UserEmailDao();
-    }
+@ContextConfiguration(classes = TestDaoConfig.class)
+public class UserEmailDaoTest {
 
-    @AfterAll
-    static void tearDown() {
-        userEmailDao = null;
-    }
+    @Autowired
+    private UserEmailDao userEmailDao;
 
     @Test
     void addNewUser() {
-
         LocalDateTime time = LocalDateTime.now();
         String email = "add-email-test@gmail.com";
         UserEmail userEmail = new UserEmail("1", email, time);

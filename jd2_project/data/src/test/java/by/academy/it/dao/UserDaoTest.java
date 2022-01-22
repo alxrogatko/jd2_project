@@ -1,5 +1,6 @@
 package by.academy.it.dao;
 
+import by.academy.it.config.TestDaoConfig;
 import by.academy.it.pojo.User;
 import by.academy.it.util.TestSessionFactoryUtil;
 import org.hibernate.Session;
@@ -8,22 +9,22 @@ import org.junit.After;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class UserDaoTest extends TestSessionFactoryUtil {
+import static by.academy.it.util.TestSessionFactoryUtil.sessionFactory;
 
-    private static UserDao userDao;
+@ContextConfiguration(classes = TestDaoConfig.class)
+public class UserDaoTest {
 
-    @BeforeAll
-    static void setUp() {
-        userDao = new UserDao();
-    }
-
-    @After
-    public void tearDown() {
-    }
+    @Autowired
+    private UserDao userDao;
 
     @Test
     public void addUser() {
@@ -39,7 +40,7 @@ public class UserDaoTest extends TestSessionFactoryUtil {
 
         userDao.addUser(user);
 
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Query<User> query = session.createQuery("from User where email = : paramEmail", User.class);
         query.setParameter("paramEmail", email);
         List<User> userList = query.list();

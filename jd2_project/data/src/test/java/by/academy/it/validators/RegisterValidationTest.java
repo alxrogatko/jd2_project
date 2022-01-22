@@ -5,31 +5,17 @@ import by.academy.it.util.SessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.List;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class RegisterValidationTest {
-
-    @BeforeAll
-    static void setUp() {
-        User user = new User("test-register-validation@mail.ru",
-                null,
-                "6641782a",
-                null,
-                "",
-                "",
-                "",
-                "",
-                null);
-        Session session = SessionFactoryUtil.getSession().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(user);
-        transaction.commit();
-        session.close();
-    }
 
     static Stream<Arguments> registerValidationTest() {
         return Stream.of(
@@ -43,7 +29,7 @@ class RegisterValidationTest {
         );
     }
 
-    /*@ParameterizedTest
+    @ParameterizedTest
     @MethodSource("registerValidationTest")
     void checkCanUserRegister(String expected, String email, String password, String repassword, String nickname) {
         List<String> list = RegisterValidation.checkCanUserRegister(email, password, repassword, nickname);
@@ -56,5 +42,5 @@ class RegisterValidationTest {
         }
 
         assertEquals(expected, resultMessage);
-    }*/
+    }
 }

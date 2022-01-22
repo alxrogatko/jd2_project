@@ -1,5 +1,6 @@
 package by.academy.it.dao;
 
+import by.academy.it.config.TestDaoConfig;
 import by.academy.it.pojo.UserPassword;
 import by.academy.it.util.TestSessionFactoryUtil;
 import org.hibernate.Session;
@@ -8,22 +9,18 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class UserPasswordDaoTest extends TestSessionFactoryUtil {
-    private static UserPasswordDao userPasswordDao;
+import static by.academy.it.util.TestSessionFactoryUtil.sessionFactory;
 
-    @BeforeAll
-    static void setUp() {
-        userPasswordDao = new UserPasswordDao();
-    }
-
-    @AfterAll
-    static void tearDown() {
-        userPasswordDao = null;
-    }
+@ContextConfiguration(classes = TestDaoConfig.class)
+public class UserPasswordDaoTest {
+    @Autowired
+    private UserPasswordDao userPasswordDao;
 
     @Test
     void addUserData() {
